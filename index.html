@@ -218,7 +218,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="10-hpc-intro.html">1. Why use a Cluster?</a>
+        <a href="10-hpc-intro.html">1. ¿Por qué utilizar un clúster?</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -227,7 +227,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="11-connecting.html">2. Connecting to a remote HPC system</a>
+        <a href="11-connecting.html">2. Conexión a un sistema HPC remoto</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -236,7 +236,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="12-cluster.html">3. Working on a remote HPC system</a>
+        <a href="12-cluster.html">3. Trabajar en un sistema HPC remoto</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -245,7 +245,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="13-scheduler.html">4. Scheduler Fundamentals</a>
+        <a href="13-scheduler.html">4. Fundamentos del programador</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -254,7 +254,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="14-environment-variables.html">5. Environment Variables</a>
+        <a href="14-environment-variables.html">5. Variables de entorno</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -263,7 +263,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="15-modules.html">6. Accessing software via Modules</a>
+        <a href="15-modules.html">6. Acceso al software a través de módulos</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -272,7 +272,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="16-transferring-files.html">7. Transferring files with remote computers</a>
+        <a href="16-transferring-files.html">7. Transferencia de archivos con ordenadores remotos</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -281,7 +281,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="17-parallel.html">8. Running a parallel job</a>
+        <a href="17-parallel.html">8. Ejecutar un trabajo paralelo</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -290,7 +290,7 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="18-resources.html">9. Using resources effectively</a>
+        <a href="18-resources.html">9. Uso eficaz de los recursos</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -299,7 +299,7 @@
 <div class="accordion accordion-flush" id="accordionFlush11">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading11">
-        <a href="19-responsibility.html">10. Using shared resources responsibly</a>
+        <a href="19-responsibility.html">10. Uso responsable de los recursos compartidos</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -351,58 +351,64 @@
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link float-end" href="10-hpc-intro.html" rel="next">Next: Why use a Cluster?... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="10-hpc-intro.html" rel="next">Next: ¿Por qué utilizar un... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Setup</h1>
       
 
-<p>This workshop is an introduction to using high-performance computing
-systems effectively. We can’t cover every case or give an exhaustive
-course on parallel programming in just two days’ teaching time. Instead,
-this workshop is intended to give students a good introduction and
-overview of the tools available and how to use them effectively.</p>
-<div id="prerequisites" class="callout prereq">
+<p>Este taller es una introducción al uso eficaz de los sistemas
+informáticos de alto rendimiento. No podemos cubrir todos los casos ni
+dar un curso exhaustivo sobre programación paralela en sólo dos días de
+docencia. En su lugar, este taller pretende ofrecer a los estudiantes
+una buena introducción y una visión general de las herramientas
+disponibles y de cómo utilizarlas eficazmente.</p>
+<div id="requisitos-previos" class="callout prereq">
 <div class="callout-square">
 <i class="callout-icon" data-feather="check"></i>
 </div>
-<div id="prerequisites" class="callout-inner">
-<h3 class="callout-title">Prerequisites</h3>
+<div id="requisitos-previos" class="callout-inner">
+<h3 class="callout-title">Requisitos previos</h3>
 <div class="callout-content">
-<p>Command line experience is necessary for this lesson. We recommend
-the participants to go through <a href="https://swcarpentry.github.io/shell-novice/" class="external-link">shell-novice</a>, if
-new to the command line (also known as terminal or shell).</p>
+<p>Para esta lección es necesario tener experiencia con la línea de
+comandos. Recomendamos a los participantes que pasen por <a href="https://swcarpentry.github.io/shell-novice/" class="external-link">shell-novice</a>, si
+son nuevos en la línea de comandos (también conocida como terminal o
+shell).</p>
 </div>
 </div>
 </div>
-<p>By the end of this workshop, students will know how to:</p>
-<ul><li>Identify problems a cluster can help solve</li>
-<li>Use the UNIX shell (also known as terminal or command line) to
-connect to a cluster.</li>
-<li>Transfer files onto a cluster.</li>
-<li>Submit and manage jobs on a cluster using a scheduler.</li>
-<li>Observe the benefits and limitations of parallel execution.</li>
-</ul><div id="getting-started" class="callout">
+<p>Al finalizar este taller, los alumnos sabrán cómo:</p>
+<ul><li>Identificar los problemas que una agrupación puede ayudar a
+resolver</li>
+<li>Utiliza el shell UNIX (también conocido como terminal o línea de
+comandos) para conectarte a un cluster.</li>
+<li>Transferencia de archivos a un clúster.</li>
+<li>Enviar y gestionar trabajos en un cluster utilizando un
+planificador.</li>
+<li>Observa las ventajas y limitaciones de la ejecución en
+paralelo.</li>
+</ul><div id="primeros-pasos" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="getting-started" class="callout-inner">
-<h3 class="callout-title">Getting Started</h3>
+<div id="primeros-pasos" class="callout-inner">
+<h3 class="callout-title">Primeros pasos</h3>
 <div class="callout-content">
-<p>To get started, please follow the “<a href="index.html#setup">Setup
-Instructions</a> to ensure you have a terminal and SSH application.</p>
+<p>Para empezar, por favor sigue las “<a href="index.html#setup">Instrucciones
+de configuración</a> para asegurarte de que tienes un terminal y una
+aplicación SSH.</p>
 </div>
 </div>
 </div>
-<p>Note that this is the draft HPC Carpentry release. Comments and
-feedback are welcome.</p>
-<div id="for-instructors" class="callout">
+<p>Tenga en cuenta que este es el borrador de HPC Carpentry. Comentarios
+y opiniones son bienvenidos.</p>
+<div id="para-instructores" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="for-instructors" class="callout-inner">
-<h3 class="callout-title">For Instructors</h3>
+<div id="para-instructores" class="callout-inner">
+<h3 class="callout-title">Para instructores</h3>
 <div class="callout-content">
-<p>If you are teaching this lesson in a workshop, please see the <a href="instructor-notes.html">Instructor notes</a>.</p>
+<p>Si impartes esta lección en un taller, consulta las <a href="instructor-notes.html">Notas del instructor</a>.</p>
 </div>
 </div>
 </div>
@@ -576,7 +582,7 @@ have to do anything.</p>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link float-end" href="10-hpc-intro.html" rel="next">Next: Why use a Cluster?... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="10-hpc-intro.html" rel="next">Next: ¿Por qué utilizar un... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
     </nav></div>
 <!-- END  : inst/pkgdown/templates/content-syllabus.html -->
@@ -620,8 +626,8 @@ have to do anything.</p>
   "url": "https://ocaisa.github.io/probable_pancake/index.html",
   "identifier": "https://ocaisa.github.io/probable_pancake/index.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2025-03-20",
-  "datePublished": "2025-03-20"
+  "dateModified": "2025-03-23",
+  "datePublished": "2025-03-23"
 }
 
   </script><script>
