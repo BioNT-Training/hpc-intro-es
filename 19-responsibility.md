@@ -1,83 +1,58 @@
 ---
-title: Using shared resources responsibly
+title: Uso responsable de los recursos compartidos
 teaching: 15
 exercises: 5
 ---
 
 
 
+
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Describe how the actions of a single user can affect the experience of others on a shared system.
-- Discuss the behaviour of a considerate shared system citizen.
-- Explain the importance of backing up critical data.
-- Describe the challenges with transferring large amounts of data off HPC systems.
-- Convert many files to a single archive file using tar.
+- Describe cómo las acciones de un único usuario pueden afectar a la experiencia de otros en un sistema compartido.
+- Discutir el comportamiento de un ciudadano considerado del sistema compartido.
+- Explica la importancia de hacer copias de seguridad de los datos críticos.
+- Describa los retos que plantea la transferencia de grandes cantidades de datos fuera de los sistemas HPC.
+- Convierte muchos ficheros en un único archivo comprimido utilizando tar.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I be a responsible user?
-- How can I protect my data?
-- How can I best get large amounts of data off an HPC system?
+- ¿Cómo puedo ser un usuario responsable?
+- ¿Cómo puedo proteger mis datos?
+- ¿Cuál es la mejor forma de obtener grandes cantidades de datos de un sistema HPC?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-One of the major differences between using remote HPC resources and your own
-system (e.g. your laptop) is that remote resources are shared. How many users
-the resource is shared between at any one time varies from system to system, but
-it is unlikely you will ever be the only user logged into or using such a
-system.
+Una de las principales diferencias entre utilizar recursos HPC remotos y tu propio sistema (por ejemplo, tu portátil) es que los recursos remotos se comparten. El número de usuarios que comparten el recurso en un momento dado varía de un sistema a otro, pero es poco probable que usted sea el único usuario conectado o utilizando un sistema de este tipo.
 
-The widespread usage of scheduling systems where users submit jobs on HPC
-resources is a natural outcome of the shared nature of these resources. There
-are other things you, as an upstanding member of the community, need to
-consider.
+El uso generalizado de sistemas de programación en los que los usuarios envían trabajos a recursos HPC es un resultado natural de la naturaleza compartida de estos recursos. Hay otras cosas que usted, como miembro honrado de la comunidad, debe tener en cuenta.
 
-## Be Kind to the Login Nodes
+## Sea amable con los nodos de inicio de sesión
 
-The login node is often busy managing all of the logged in users, creating and
-editing files and compiling software. If the machine runs out of memory or
-processing capacity, it will become very slow and unusable for everyone. While
-the machine is meant to be used, be sure to do so responsibly -- in ways
-that will not adversely impact other users' experience.
+El nodo de inicio de sesión suele estar ocupado gestionando todos los usuarios conectados, creando y editando archivos y compilando software. Si la máquina se queda sin memoria o capacidad de procesamiento, se volverá muy lenta e inutilizable para todos. Aunque la máquina está pensada para ser utilizada, asegúrate de hacerlo de forma responsable, de manera que no afecte negativamente a la experiencia de los demás usuarios.
 
-Login nodes are always the right place to launch jobs. Cluster policies vary,
-but they may also be used for proving out workflows, and in some cases, may
-host advanced cluster-specific debugging or development tools. The cluster may
-have modules that need to be loaded, possibly in a certain order, and paths or
-library versions that differ from your laptop, and doing an interactive test
-run on the head node is a quick and reliable way to discover and fix these
-issues.
+Los nodos de inicio de sesión son siempre el lugar adecuado para lanzar trabajos. Las políticas de clúster varían, pero también pueden utilizarse para probar flujos de trabajo y, en algunos casos, pueden albergar herramientas avanzadas de depuración o desarrollo específicas del clúster. El cluster puede tener módulos que necesitan ser cargados, posiblemente en un cierto orden, y rutas o versiones de librerías que difieren de tu portátil, y hacer una prueba interactiva en el nodo principal es una forma rápida y fiable de descubrir y arreglar estos problemas.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Login Nodes Are a Shared Resource
+## Los nodos de inicio de sesión son un recurso compartido
 
-Remember, the login node is shared with all other users and your actions
-could cause issues for other people. Think carefully about the potential
-implications of issuing commands that may use large amounts of resource.
+Recuerda que el nodo de inicio de sesión se comparte con todos los demás usuarios y tus acciones podrían causar problemas a otras personas. Piensa detenidamente en las posibles implicaciones de emitir comandos que puedan utilizar grandes cantidades de recursos.
 
-Unsure? Ask your friendly systems administrator ("sysadmin") if the thing
-you're contemplating is suitable for the login node, or if there's another
-mechanism to get it done safely.
+¿No está seguro? Pregunte a su amable administrador de sistemas ("sysadmin") si lo que está contemplando es adecuado para el nodo de inicio de sesión, o si existe otro mecanismo para hacerlo de forma segura.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-You can always use the commands `top` and `ps ux` to list the processes that
-are running on the login node along with the amount of CPU and memory they are
-using. If this check reveals that the login node is somewhat idle, you can
-safely use it for your non-routine processing task. If something goes wrong
-\-- the process takes too long, or doesn't respond -- you can use the
-`kill` command along with the *PID* to terminate the process.
+Siempre puede utilizar los comandos `top` y `ps ux` para listar los procesos que se están ejecutando en el nodo de inicio de sesión junto con la cantidad de CPU y memoria que están utilizando. Si esta comprobación revela que el nodo de inicio de sesión está algo inactivo, puede utilizarlo con seguridad para su tarea de procesamiento no rutinaria. Si algo va mal -- el proceso tarda demasiado, o no responde -- puede usar el comando `kill` junto con el *PID* para terminar el proceso.
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Login Node Etiquette
+## Etiqueta del nodo de inicio de sesión
 
-Which of these commands would be a routine task to run on the login node?
+¿Cuál de estos comandos sería una tarea rutinaria a ejecutar en el nodo login?
 
 1. `python physics_sim.py`
 2. `make`
@@ -85,20 +60,13 @@ Which of these commands would be a routine task to run on the login node?
 4. `molecular_dynamics_2`
 5. `tar -xzf R-3.3.0.tar.gz`
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Solución
 
-Building software, creating directories, and unpacking software are common
-and acceptable > tasks for the login node: options #2 (`make`), #3
-(`mkdir`), and #5 (`tar`) are probably OK. Note that script names do not
-always reflect their contents: before launching #3, please
-`less create_directories.sh` and make sure it's not a Trojan horse.
+Construir software, crear directorios y desempaquetar software son tareas > comunes y aceptables para el nodo de inicio de sesión: las opciones #2 (`make`), #3 (`mkdir`) y #5 (`tar`) probablemente estén bien. Tenga en cuenta que los nombres de los scripts no siempre reflejan su contenido: antes de lanzar #3, por favor `less create_directories.sh` y asegúrese de que no es un troyano.
 
-Running resource-intensive applications is frowned upon. Unless you are
-sure it will not affect other users, do not run jobs like #1 (`python`)
-or #4 (custom MD code). If you're unsure, ask your friendly sysadmin for
-advice.
+No está bien visto ejecutar aplicaciones que consumen muchos recursos. A menos que esté seguro de que no afectará a otros usuarios, no ejecute trabajos como #1 (`python`) o #4 (código MD personalizado). Si no está seguro, pida consejo a su administrador de sistemas.
 
 
 
@@ -106,165 +74,76 @@ advice.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-If you experience performance issues with a login node you should report it to
-the system staff (usually via the helpdesk) for them to investigate.
+Si experimenta problemas de rendimiento con un nodo de inicio de sesión, debe informar de ello al personal del sistema (normalmente a través del servicio de asistencia) para que lo investiguen.
 
-## Test Before Scaling
+## Prueba antes de escalar
 
-Remember that you are generally charged for usage on shared systems. A simple
-mistake in a job script can end up costing a large amount of resource budget.
-Imagine a job script with a mistake that makes it sit doing nothing for 24
-hours on 1000 cores or one where you have requested 2000 cores by mistake and
-only use 100 of them! This problem can be compounded when people write scripts
-that automate job submission (for example, when running the same calculation or
-analysis over lots of different parameters or files). When this happens it
-hurts both you (as you waste lots of charged resource) and other users (who are
-blocked from accessing the idle compute nodes). On very busy resources you may
-wait many days in a queue for your job to fail within 10 seconds of starting due
-to a trivial typo in the job script. This is extremely frustrating!
+Recuerde que generalmente se le cobra por el uso en sistemas compartidos. Un simple error en un script de trabajo puede acabar costando una gran cantidad de presupuesto de recursos. Imagina un script de trabajo con un error que hace que se quede sin hacer nada durante 24 horas en 1000 núcleos o uno en el que has solicitado 2000 núcleos por error y ¡sólo utilizas 100 de ellos! Este problema puede agravarse cuando la gente escribe scripts que automatizan el envío de trabajos (por ejemplo, cuando se ejecuta el mismo cálculo o análisis sobre muchos parámetros o archivos diferentes). Cuando esto ocurre, te perjudica tanto a ti (ya que desperdicias muchos recursos cargados) como a otros usuarios (que ven bloqueado su acceso a los nodos de cálculo ociosos). En recursos muy ocupados puedes esperar muchos días en una cola para que tu trabajo falle a los 10 segundos de empezar debido a un error tipográfico trivial en el script del trabajo. Esto es extremadamente frustrante
 
-Most systems provide dedicated resources for testing that have short wait times
-to help you avoid this issue.
+La mayoría de los sistemas proporcionan recursos dedicados para pruebas que tienen tiempos de espera cortos para ayudarte a evitar este problema.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Test Job Submission Scripts That Use Large Amounts of Resources
+## Probar scripts de envío de trabajos que utilizan grandes cantidades de recursos
 
-Before submitting a large run of jobs, submit one as a test first to make
-sure everything works as expected.
+Antes de enviar una gran cantidad de trabajos, envíe primero uno como prueba para asegurarse de que todo funciona como se espera.
 
-Before submitting a very large or very long job submit a short truncated test
-to ensure that the job starts as expected.
+Antes de enviar un trabajo muy grande o muy largo envíe una pequeña prueba truncada para asegurarse de que el trabajo se inicia como se espera.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Have a Backup Plan
+## Tener un plan de copias de seguridad
 
-Although many HPC systems keep backups, it does not always cover all the file
-systems available and may only be for disaster recovery purposes (i.e. for
-restoring the whole file system if lost rather than an individual file or
-directory you have deleted by mistake). Protecting critical data from
-corruption or deletion is primarily your responsibility: keep your own backup
-copies.
+Aunque muchos sistemas HPC guardan copias de seguridad, no siempre cubren todos los sistemas de ficheros disponibles y puede que sólo sean para fines de recuperación de desastres (es decir, para restaurar todo el sistema de ficheros en caso de pérdida en lugar de un fichero o directorio individual que hayas borrado por error). Proteger los datos críticos de la corrupción o el borrado es principalmente tu responsabilidad: mantén tus propias copias de seguridad.
 
-Version control systems (such as Git) often have free, cloud-based offerings
-(e.g., GitHub and GitLab) that are generally used for storing source code. Even
-if you are not writing your own programs, these can be very useful for storing
-job scripts, analysis scripts and small input files.
+Los sistemas de control de versiones (como Git) suelen tener ofertas gratuitas basadas en la nube (por ejemplo, GitHub y GitLab) que se utilizan generalmente para almacenar el código fuente. Incluso si no estás escribiendo tus propios programas, estos pueden ser muy útiles para almacenar scripts de trabajo, scripts de análisis y pequeños archivos de entrada.
 
-If you are building software, you may have a large amount of source code
-that you compile to build your executable. Since this data can generally
-be recovered by re-downloading the code, or re-running the checkout
-operation from the source code repository, this data is also less
-critical to protect.
+Si está creando software, es posible que tenga una gran cantidad de código fuente que compila para crear su ejecutable. Dado que estos datos generalmente se pueden recuperar volviendo a descargar el código o volviendo a ejecutar la operación de comprobación desde el repositorio de código fuente, también es menos importante proteger estos datos.
 
-For larger amounts of data, especially important results from your runs,
-which may be irreplaceable, you should make sure you have a robust system in
-place for taking copies of data off the HPC system wherever possible
-to backed-up storage. Tools such as `rsync` can be very useful for this.
+Para grandes cantidades de datos, especialmente resultados importantes de sus ejecuciones, que pueden ser irremplazables, debe asegurarse de que dispone de un sistema robusto para sacar copias de los datos del sistema HPC siempre que sea posible a un almacenamiento de copia de seguridad. Herramientas como `rsync` pueden ser muy útiles para esto.
 
-Your access to the shared HPC system will generally be time-limited so you
-should ensure you have a plan for transferring your data off the system before
-your access finishes. The time required to transfer large amounts of data
-should not be underestimated and you should ensure you have planned for this
-early enough (ideally, before you even start using the system for your
-research).
+Su acceso al sistema HPC compartido estará generalmente limitado en el tiempo, por lo que debe asegurarse de tener un plan para transferir sus datos fuera del sistema antes de que termine su acceso. No subestime el tiempo necesario para transferir grandes cantidades de datos y asegúrese de planificarlo con suficiente antelación (idealmente, antes de empezar a utilizar el sistema para su investigación).
 
-In all these cases, the helpdesk of the system you are using should be able to
-provide useful guidance on your options for data transfer for the volumes of
-data you will be using.
+En todos estos casos, el servicio de asistencia del sistema que esté utilizando debería poder proporcionarle orientación útil sobre las opciones de transferencia de datos para los volúmenes de datos que vaya a utilizar.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Your Data Is Your Responsibility
+## Tus datos son tu responsabilidad
 
-Make sure you understand what the backup policy is on the file systems on the
-system you are using and what implications this has for your work if you lose
-your data on the system. Plan your backups of critical data and how you will
-transfer data off the system throughout the project.
+Asegúrate de que entiendes cuál es la política de copias de seguridad de los sistemas de archivos del sistema que estás utilizando y qué implicaciones tiene para tu trabajo si pierdes tus datos en el sistema. Planifica tus copias de seguridad de los datos críticos y cómo transferirás los datos fuera del sistema a lo largo del proyecto.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Transferring Data
+## Transfiriendo datos
 
-As mentioned above, many users run into the challenge of transferring large
-amounts of data off HPC systems at some point (this is more often in
-transferring data off than onto systems but the advice below applies in either
-case). Data transfer speed may be limited by many different factors so the best
-data transfer mechanism to use depends on the type of data being transferred
-and where the data is going.
+Como se mencionó anteriormente, muchos usuarios se encuentran con el reto de transferir grandes cantidades de datos fuera de los sistemas HPC en algún momento (esto es más frecuente en la transferencia de datos fuera que dentro de los sistemas, pero los consejos a continuación se aplican en ambos casos). La velocidad de transferencia de datos puede estar limitada por muchos factores diferentes, por lo que el mejor mecanismo de transferencia de datos que se puede utilizar depende del tipo de datos que se transfieren y a dónde van los datos.
 
-The components between your data's source and destination have
-varying levels of performance, and in particular, may have
-different capabilities with respect to **bandwidth** and **latency**.
+Los componentes entre el origen y el destino de tus datos tienen diferentes niveles de rendimiento y, en particular, pueden tener diferentes capacidades con respecto al **ancho de banda** y la **latencia**.
 
-**Bandwidth** is generally the raw amount of data per unit time a
-device is capable of transmitting or receiving. It's a common
-and generally well-understood metric.
+**El ancho de banda** es generalmente la cantidad bruta de datos por unidad de tiempo que un dispositivo es capaz de transmitir o recibir. Es una métrica común y generalmente bien entendida.
 
-**Latency** is a bit more subtle. For data transfers, it may be thought
-of as the amount of time it takes to get data out of storage and into
-a transmittable form. Latency issues are the reason it's advisable
-to execute data transfers by moving a small number of large
-files, rather than the converse.
+**La latencia** es algo más sutil. Para las transferencias de datos, se puede considerar como la cantidad de tiempo que se tarda en sacar los datos del almacenamiento y ponerlos en una forma transmisible. Los problemas de latencia son la razón por la que es aconsejable ejecutar las transferencias de datos moviendo un pequeño número de archivos grandes, en lugar de lo contrario.
 
-Some of the key components and their associated issues are:
+Algunos de los componentes clave y sus problemas asociados son:
 
-- **Disk speed**: File systems on HPC systems are often highly parallel,
-  consisting of a very large number of high performance disk drives. This
-  allows them to support a very high data bandwidth. Unless the remote system
-  has a similar parallel file system you may find your transfer speed limited
-  by disk performance at that end.
-- **Meta-data performance**: *Meta-data operations* such as opening and closing
-  files or listing the owner or size of a file are much less parallel than
-  read/write operations. If your data consists of a very large number of small
-  files you may find your transfer speed is limited by meta-data operations.
-  Meta-data operations performed by other users of the system can also interact
-  strongly with those you perform so reducing the number of such operations you
-  use (by combining multiple files into a single file) may reduce variability
-  in your transfer rates and increase transfer speeds.
-- **Network speed**: Data transfer performance can be limited by network speed.
-  More importantly it is limited by the slowest section of the network between
-  source and destination. If you are transferring to your laptop/workstation,
-  this is likely to be its connection (either via LAN or WiFi).
-- **Firewall speed**: Most modern networks are protected by some form of
-  firewall that filters out malicious traffic. This filtering has some overhead
-  and can result in a reduction in data transfer performance. The needs of a
-  general purpose network that hosts email/web-servers and desktop machines are
-  quite different from a research network that needs to support high volume
-  data transfers. If you are trying to transfer data to or from a host on a
-  general purpose network you may find the firewall for that network will limit
-  the transfer rate you can achieve.
+- **Velocidad del disco**: Los sistemas de archivos de los sistemas HPC suelen ser altamente paralelos y constan de un gran número de unidades de disco de alto rendimiento. Esto les permite soportar un ancho de banda de datos muy elevado. A menos que el sistema remoto tenga un sistema de ficheros paralelo similar, la velocidad de transferencia puede verse limitada por el rendimiento del disco en ese extremo.
+- **Rendimiento de los metadatos**: *Las operaciones de metadatos*, como abrir y cerrar archivos o listar el propietario o el tamaño de un archivo, son mucho menos paralelas que las operaciones de lectura/escritura. Si tus datos consisten en un gran número de archivos pequeños, puede que la velocidad de transferencia se vea limitada por las operaciones de metadatos. Las operaciones de metadatos realizadas por otros usuarios del sistema también pueden interactuar fuertemente con las que tú realizas, por lo que reducir el número de operaciones de este tipo que utilizas (combinando varios archivos en uno solo) puede reducir la variabilidad en tus tasas de transferencia y aumentar la velocidad de transferencia.
+- **Velocidad de red**: El rendimiento de la transferencia de datos puede verse limitado por la velocidad de la red. Más importante aún, está limitado por la sección más lenta de la red entre el origen y el destino. Si está transfiriendo a su ordenador portátil/estación de trabajo, es probable que ésta sea su conexión (ya sea a través de LAN o WiFi).
+- **Velocidad del cortafuegos**: La mayoría de las redes modernas están protegidas por algún tipo de cortafuegos que filtra el tráfico malicioso. Este filtrado tiene cierta sobrecarga y puede reducir el rendimiento de la transferencia de datos. Las necesidades de una red de uso general que aloja servidores web o de correo electrónico y equipos de sobremesa son muy distintas de las de una red de investigación que necesita transferir grandes volúmenes de datos. Si intentas transferir datos a o desde un host en una red de propósito general, puede que el cortafuegos de esa red limite la velocidad de transferencia que puedes alcanzar.
 
-As mentioned above, if you have related data that consists of a large number of
-small files it is strongly recommended to pack the files into a larger
-*archive* file for long term storage and transfer. A single large file makes
-more efficient use of the file system and is easier to move, copy and transfer
-because significantly fewer metadata operations are required. Archive files can
-be created using tools like `tar` and `zip`. We have already met `tar` when we
-talked about data transfer earlier.
+Como se ha mencionado anteriormente, si tienes datos relacionados que consisten en un gran número de archivos pequeños, se recomienda encarecidamente empaquetar los archivos en un archivo *archive* más grande para su almacenamiento y transferencia a largo plazo. Un único archivo grande hace un uso más eficiente del sistema de archivos y es más fácil de mover, copiar y transferir porque se requieren muchas menos operaciones de metadatos. Los ficheros de archivo pueden crearse con herramientas como `tar` y `zip`. Ya conocimos `tar` cuando hablamos anteriormente de la transferencia de datos.
 
-![Schematic diagram of bandwidth and latency for disk and network
-I/O. Each of the components on the figure is connected by a blue line of
-width proportional to the interface bandwidth. The small mazes at the
-link points illustrate the latency of the link, with more tortuous
-mazes indicating higher latency.](/fig/responsibility-bandwidth.svg){max-width="90%"
-alt="Schematic of network bandwidth"}
+¡[Diagrama esquemático de ancho de banda y latencia para E/S de disco y red. Cada uno de los componentes de la figura está conectado por una línea azul de anchura proporcional al ancho de banda de la interfaz. Los pequeños laberintos en los puntos de enlace ilustran la latencia del enlace, con laberintos más tortuosos que indican una latencia mayor.](/fig/responsibility-bandwidth.svg){max-width="90%" alt="Esquema del ancho de banda de la red"}
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Consider the Best Way to Transfer Data
+## Considere la mejor forma de transferir datos
 
-If you are transferring large amounts of data you will need to think about
-what may affect your transfer performance. It is always useful to run some
-tests that you can use to extrapolate how long it will take to transfer your
-data.
+Si vas a transferir grandes cantidades de datos, tendrás que pensar en qué puede afectar al rendimiento de la transferencia. Siempre es útil realizar algunas pruebas que puedas utilizar para extrapolar el tiempo que tardará la transferencia de tus datos.
 
-Say you have a "data" folder containing 10,000 or so files, a healthy mix of
-small and large ASCII and binary data. Which of the following would be the
-best way to transfer them to HPC Carpentry's Cloud Cluster?
+Supongamos que tienes una carpeta "data" que contiene unos 10.000 archivos, una buena mezcla de pequeños y grandes datos ASCII y binarios. ¿Cuál de las siguientes opciones sería la mejor para transferirlos a HPC Carpentry's Cloud Cluster?
 
 1. `scp -r data yourUsername@cluster.hpc-carpentry.org:~/`
 2. `rsync -ra data yourUsername@cluster.hpc-carpentry.org:~/`
@@ -276,25 +155,15 @@ best way to transfer them to HPC Carpentry's Cloud Cluster?
 
    `rsync -ra data.tar.gz yourUsername@cluster.hpc-carpentry.org:~/`
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Solución
 
-1. `scp` will recursively copy the directory. This works, but without
-  compression.
-2. `rsync -ra` works like `scp -r`, but preserves file information like
-  creation times. This is marginally better.
-3. `rsync -raz` adds compression, which will save some bandwidth. If you
-  have a strong CPU at both ends of the line, and you're on a slow
-  network, this is a good choice.
-4. This command first uses `tar` to merge everything into a single file,
-  then `rsync -z` to transfer it with compression. With this large
-  *number* of files, metadata overhead can hamper your transfer, so this
-  is a good idea.
-5. This command uses `tar -z` to compress the archive, then `rsync` to
-  transfer it. This may perform similarly to #4, but in most cases (for
-  large datasets), it's the best combination of high throughput and low
-  latency (making the most of your time and network connection).
+1. `scp` copiará recursivamente el directorio. Esto funciona, pero sin compresión.
+2. `rsync -ra` funciona como `scp -r`, pero conserva la información del archivo, como las horas de creación. Esto es ligeramente mejor.
+3. `rsync -raz` añade compresión, lo que ahorrará algo de ancho de banda. Si tienes una CPU potente en ambos extremos de la línea, y estás en una red lenta, ésta es una buena opción.
+4. Este comando utiliza primero `tar` para unir todo en un único archivo, y luego `rsync -z` para transferirlo con compresión. Con este *número* tan grande de ficheros, la sobrecarga de metadatos puede dificultar la transferencia, por lo que es una buena idea.
+5. Este comando utiliza `tar -z` para comprimir el archivo y luego `rsync` para transferirlo. Puede tener un rendimiento similar a #4, pero en la mayoría de los casos (para grandes conjuntos de datos), es la mejor combinación de alto rendimiento y baja latencia (aprovechando al máximo el tiempo y la conexión de red).
 
 :::::::::::::::::::::::::
 
@@ -302,11 +171,12 @@ best way to transfer them to HPC Carpentry's Cloud Cluster?
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Be careful how you use the login node.
-- Your data on the system is your responsibility.
-- Plan and test large data transfers.
-- It is often best to convert many files to a single archive file before transferring.
+- Ten cuidado con el uso del nodo login.
+- Tus datos en el sistema son tu responsabilidad.
+- Planifica y prueba grandes transferencias de datos.
+- A menudo es mejor convertir muchos ficheros en un único archivo antes de transferirlos.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 

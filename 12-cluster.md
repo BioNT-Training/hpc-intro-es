@@ -1,110 +1,58 @@
 ---
-title: "Working on a remote HPC system"
+title: Trabajar en un sistema HPC remoto
 teaching: 25
 exercises: 10
 ---
 
 
 
+
 ::: questions
-- "What is an HPC system?"
-- "How does an HPC system work?"
-- "How do I log on to a remote HPC system?"
+
+- "¿Qué es un sistema HPC?"
+- "¿Cómo funciona un sistema HPC?"
+- "¿Cómo me conecto a un sistema HPC remoto?"
+
 :::
 
 ::: objectives
-- "Connect to a remote HPC system."
-- "Understand the general HPC system architecture."
+
+- "Conectarse a un sistema HPC remoto"
+- "Comprender la arquitectura general del sistema HPC"
+
 :::
 
-## What Is an HPC System?
+## ¿Qué es un sistema HPC?
 
-The words "cloud", "cluster", and the phrase "high-performance computing" or
-"HPC" are used a lot in different contexts and with various related meanings.
-So what do they mean? And more importantly, how do we use them in our work?
+Las palabras "nube", "clúster", y la frase "computación de alto rendimiento" o "HPC" se utilizan mucho en diferentes contextos y con varios significados relacionados. ¿Qué significan? Y lo que es más importante, ¿cómo los utilizamos en nuestro trabajo?
 
-The *cloud* is a generic term commonly used to refer to computing resources
-that are a) *provisioned* to users on demand or as needed and b) represent real
-or *virtual* resources that may be located anywhere on Earth. For example, a
-large company with computing resources in Brazil, Zimbabwe and Japan may manage
-those resources as its own *internal* cloud and that same company may also
-utilize commercial cloud resources provided by Amazon or Google. Cloud
-resources may refer to machines performing relatively simple tasks such as
-serving websites, providing shared storage, providing web services (such as
-e-mail or social media platforms), as well as more traditional compute
-intensive tasks such as running a simulation.
+La *nube* es un término genérico comúnmente utilizado para referirse a los recursos informáticos que son a) *proporcionados* a los usuarios bajo demanda o según sus necesidades y b) representan recursos reales o *virtuales* que pueden estar localizados en cualquier lugar de la Tierra. Por ejemplo, una gran empresa con recursos informáticos en Brasil, Zimbabue y Japón puede gestionar esos recursos como su propia nube *interna* y esa misma empresa puede utilizar también recursos comerciales en la nube proporcionados por Amazon o Google. Los recursos en la nube pueden referirse a máquinas que realizan tareas relativamente sencillas como servir sitios web, proporcionar almacenamiento compartido, proporcionar servicios web (como correo electrónico o plataformas de medios sociales), así como tareas más tradicionales de computación intensiva como ejecutar una simulación.
 
-The term *HPC system*, on the other hand, describes a stand-alone resource for
-computationally intensive workloads. They are typically comprised of a
-multitude of integrated processing and storage elements, designed to handle
-high volumes of data and/or large numbers of floating-point operations
-([FLOPS](https://en.wikipedia.org/wiki/FLOPS)) with the highest possible
-performance. For example, all of the machines on the
-[Top-500](https://www.top500.org) list are HPC systems. To support these
-constraints, an HPC resource must exist in a specific, fixed location:
-networking cables can only stretch so far, and electrical and optical signals
-can travel only so fast.
+El término *sistema HPC*, por otro lado, describe un recurso independiente para cargas de trabajo computacionalmente intensivas. Suelen estar compuestos por una multitud de elementos integrados de procesamiento y almacenamiento, diseñados para manejar grandes volúmenes de datos y/o grandes números de operaciones en coma flotante ([FLOPS](https://en.wikipedia.org/wiki/FLOPS)) con el mayor rendimiento posible. Por ejemplo, todas las máquinas de la lista [Top-500](https://www.top500.org) son sistemas HPC. Para soportar estas limitaciones, un recurso HPC debe existir en una ubicación específica y fija: los cables de red sólo pueden estirarse hasta cierto punto, y las señales eléctricas y ópticas sólo pueden viajar a cierta velocidad.
 
-The word "cluster" is often used for small to moderate scale HPC resources less
-impressive than the [Top-500](https://www.top500.org). Clusters are often
-maintained in computing centers that support several such systems, all sharing
-common networking and storage to support common compute intensive tasks.
+La palabra "clúster" se utiliza a menudo para recursos HPC de escala pequeña a moderada menos impresionantes que el [Top-500](https://www.top500.org). Los clústeres suelen mantenerse en centros de cálculo que soportan varios sistemas de este tipo, todos ellos compartiendo redes y almacenamiento comunes para soportar tareas comunes de cálculo intensivo.
 
-## Logging In
+## Inicio de sesión
 
-The first step in using a cluster is to establish a connection from our laptop
-to the cluster. When we are sitting at a computer (or standing, or holding it
-in our hands or on our wrists), we have come to expect a visual display with
-icons, widgets, and perhaps some windows or applications: a graphical user
-interface, or GUI. Since computer clusters are remote resources that we connect
-to over often slow or laggy interfaces (WiFi and VPNs especially), it is more
-practical to use a command-line interface, or CLI, in which commands and
-results are transmitted via text, only. Anything other than text (images, for
-example) must be written to disk and opened with a separate program.
+El primer paso para utilizar un clúster es establecer una conexión entre nuestro portátil y el clúster. Cuando estamos sentados frente a un ordenador (o de pie, o sosteniéndolo en la mano o en la muñeca), esperamos ver una pantalla con iconos, widgets y quizás algunas ventanas o aplicaciones: una interfaz gráfica de usuario o GUI. Dado que los clústeres informáticos son recursos remotos a los que nos conectamos a través de interfaces a menudo lentas o con retardo (WiFi y VPN, especialmente), es más práctico utilizar una interfaz de línea de comandos, o CLI, en la que los comandos y los resultados se transmiten únicamente a través de texto. Todo lo que no sea texto (imágenes, por ejemplo) debe escribirse en disco y abrirse con un programa aparte.
 
-If you have ever opened the Windows Command Prompt or macOS Terminal, you have
-seen a CLI. If you have already taken The Carpentries' courses on the UNIX
-Shell or Version Control, you have used the CLI on your local machine somewhat
-extensively. The only leap to be made here is to open a CLI on a *remote*
-machine, while taking some precautions so that other folks on the network can't
-see (or change) the commands you're running or the results the remote machine
-sends back. We will use the Secure SHell protocol (or SSH) to open an encrypted
-network connection between two machines, allowing you to send & receive text
-and data without having to worry about prying eyes.
+Si alguna vez has abierto el símbolo del sistema de Windows o el terminal de macOS, habrás visto una CLI. Si ya has tomado los cursos de Las Carpinterías sobre la Shell UNIX o el Control de Versiones, has usado la CLI en tu máquina local algo extensamente. El único salto a dar aquí es abrir un CLI en una máquina *remota*, tomando algunas precauciones para que otras personas en la red no puedan ver (o cambiar) los comandos que estás ejecutando o los resultados que la máquina remota envía de vuelta. Usaremos el protocolo Secure SHell (o SSH) para abrir una conexión de red encriptada entre dos máquinas, permitiéndote enviar y recibir texto y datos sin tener que preocuparte de miradas indiscretas.
 
-![Connect to cluster](fig/connect-to-remote.svg){alt-text="Connect to cluster"}
+![Conectarse al clúster](fig/connect-to-remote.svg){alt-text="Conectarse al clúster"}
 
-Make sure you have a SSH client installed on your laptop. Refer to the
-[setup](../index.md) section for more details. SSH clients are
-usually command-line tools, where you provide the remote machine address as the
-only required argument. If your username on the remote system differs from what
-you use locally, you must provide that as well. If your SSH client has a
-graphical front-end, such as PuTTY or MobaXterm, you will set these arguments
-before clicking "connect." From the terminal, you'll write something like `ssh
-userName@hostname`, where the "@" symbol is used to separate the two parts of a
-single argument.
+Asegúrese de que tiene un cliente SSH instalado en su portátil. Consulte la sección [setup](../index.md) para más detalles. Los clientes SSH suelen ser herramientas de línea de comandos, donde se proporciona la dirección de la máquina remota como único argumento requerido. Si tu nombre de usuario en el sistema remoto difiere del que usas localmente, debes proporcionarlo también. Si tu cliente SSH tiene un front-end gráfico, como PuTTY o MobaXterm, establecerás estos argumentos antes de hacer clic en "conectar" Desde el terminal, escribirás algo como `ssh userName@hostname`, donde el símbolo "@" se utiliza para separar las dos partes de un único argumento.
 
-Go ahead and open your terminal or graphical SSH client, then log in to the
-cluster using your username and the remote computer you can reach from the
-outside world, cluster.hpc-carpentry.org.
+Sigue adelante y abre tu terminal o cliente gráfico SSH, luego inicia sesión en el cluster usando tu nombre de usuario y el ordenador remoto al que puedes acceder desde el mundo exterior, cluster.hpc-carpentry.org.
 
 ```bash
 [you@laptop:~]$ ssh yourUsername@cluster.hpc-carpentry.org
 ```
 
-Remember to replace `yourUsername` with your username or the one
-supplied by the instructors. You may be asked for your password. Watch out: the
-characters you type after the password prompt are not displayed on the screen.
-Normal output will resume once you press `Enter`.
+Recuerda sustituir `yourUsername` por tu nombre de usuario o el que te proporcionen los instructores. Es posible que te pidan tu contraseña. Atención: los caracteres que escriba después de la solicitud de contraseña no se mostrarán en pantalla. La salida normal se reanudará cuando pulse `Enter`.
 
-## Where Are We?
+## ¿Dónde estamos?
 
-Very often, many users are tempted to think of a high-performance computing
-installation as one giant, magical machine. Sometimes, people will assume that
-the computer they've logged onto is the entire computing cluster. So what's
-really happening? What computer have we logged on to? The name of the current
-computer we are logged onto can be checked with the `hostname` command. (You
-may also notice that the current hostname is also part of our prompt!)
+Muy a menudo, muchos usuarios se ven tentados a pensar que una instalación de computación de alto rendimiento es una máquina gigante y mágica. A veces, la gente asume que el ordenador en el que han iniciado sesión es todo el clúster de computación. Pero, ¿qué ocurre realmente? ¿En qué ordenador hemos iniciado sesión? El nombre del ordenador en el que hemos iniciado sesión se puede comprobar con el comando `hostname`. (¡También puedes notar que el nombre de host actual es también parte de nuestro prompt!)
 
 ```bash
 [yourUsername@login1 ~] hostname
@@ -116,88 +64,56 @@ login1
 
 ::: challenge
 
-## What's in Your Home Directory?
+## ¿Qué hay en tu directorio de inicio?
 
-The system administrators may have configured your home directory with some
-helpful files, folders, and links (shortcuts) to space reserved for you on
-other filesystems. Take a look around and see what you can find.
-*Hint:* The shell commands `pwd` and `ls` may come in handy.
-Home directory contents vary from user to user. Please discuss any
-differences you spot with your neighbors.
+Es posible que los administradores del sistema hayan configurado su directorio personal con algunos archivos, carpetas y enlaces (accesos directos) útiles a espacios reservados para usted en otros sistemas de archivos. Eche un vistazo a ver qué encuentra. *Sugerencia:* Los comandos del shell `pwd` y `ls` pueden resultarle útiles. El contenido de los directorios personales varía de un usuario a otro. Por favor, comenta cualquier diferencia que encuentres con tus vecinos.
 
 :::: solution
 
-## It's a Beautiful Day in the Neighborhood
+## Hace un día precioso en el barrio
 
-The deepest layer should differ: `yourUsername` is uniquely yours.
-Are there differences in the path at higher levels?
+La capa más profunda debe diferir: `yourUsername` es exclusivamente suya. ¿Hay diferencias en la ruta en los niveles superiores?
 
-If both of you have empty directories, they will look identical. If you
-or your neighbor has used the system before, there may be differences. What
-are you working on?
+Si ambos tienen directorios vacíos, se verán idénticos. Si tú o tu vecino habéis usado el sistema antes, puede haber diferencias. ¿En qué estás trabajando?
 
-Use `pwd` to **p**rint the **w**orking **d**irectory path:
+Utilice `pwd` para **p**imprimir la ruta del directorio **d**de trabajo:
 
 ```bash
 [yourUsername@login1 ~] pwd
 ```
 
-You can run `ls` to **l**i**s**t the directory contents, though it's
-possible nothing will show up (if no files have been provided). To be sure,
-use the `-a` flag to show hidden files, too.
+Puede ejecutar `ls` para **l**i**s**t el contenido del directorio, aunque es posible que no aparezca nada (si no se han proporcionado ficheros). Para estar seguro, utilice también el indicador `-a` para mostrar los archivos ocultos.
 
 ```bash
 [yourUsername@login1 ~] ls -a
 ```
 
-At a minimum, this will show the current directory as `.`, and the parent
-directory as `..`.
+Como mínimo, esto mostrará el directorio actual como `.`, y el directorio padre como `..`.
 
 ::::
+
+
 :::
 
-## Nodes
+## Nodos
 
-Individual computers that compose a cluster are typically called *nodes*
-(although you will also hear people call them *servers*, *computers* and
-*machines*). On a cluster, there are different types of nodes for different
-types of tasks. The node where you are right now is called the *head node*,
-*login node*, *landing pad*, or *submit node*. A login node serves as an access
-point to the cluster.
+Los ordenadores individuales que componen un clúster se suelen llamar *nodos* (aunque también se les llama *servidores*, *ordenadores* y *máquinas*). En un clúster, hay distintos tipos de nodos para distintos tipos de tareas. El nodo en el que te encuentras en este momento se llama *nodo de cabecera*, *nodo de inicio de sesión*, *almohadilla de aterrizaje* o *nodo de envío*. Un nodo de inicio de sesión sirve como punto de acceso al clúster.
 
-As a gateway, it is well suited for uploading and downloading files, setting up
-software, and running quick tests. Generally speaking, the login node should
-not be used for time-consuming or resource-intensive tasks. You should be alert
-to this, and check with your site's operators or documentation for details of
-what is and isn't allowed. In these lessons, we will avoid running jobs on the
-head node.
+Como pasarela, es muy adecuada para subir y descargar archivos, configurar software y realizar pruebas rápidas. En general, el nodo de acceso no debe utilizarse para tareas que consuman mucho tiempo o recursos. Deberías estar atento a esto, y comprobar con los operadores o la documentación de tu sitio los detalles de lo que está y no está permitido. En estas lecciones, evitaremos ejecutar trabajos en el nodo principal.
 
 ::: callout
 
-## Dedicated Transfer Nodes
+## Nodos de transferencia dedicados
 
-If you want to transfer larger amounts of data to or from the cluster, some
-systems offer dedicated nodes for data transfers only. The motivation for
-this lies in the fact that larger data transfers should not obstruct
-operation of the login node for anybody else. Check with your cluster's
-documentation or its support team if such a transfer node is available. As a
-rule of thumb, consider all transfers of a volume larger than 500 MB to 1 GB
-as large. But these numbers change, e.g., depending on the network connection
-of yourself and of your cluster or other factors.
+Si desea transferir grandes cantidades de datos hacia o desde el clúster, algunos sistemas ofrecen nodos dedicados sólo para transferencias de datos. La motivación de esto radica en el hecho de que las transferencias de datos más grandes no deben obstruir el funcionamiento del nodo de inicio de sesión para nadie más. Comprueba en la documentación de tu clúster o con su equipo de soporte si existe un nodo de transferencia de este tipo. Como regla general, considere todas las transferencias de un volumen superior a 500 MB a 1 GB como grandes. Pero estos números cambian, por ejemplo, en función de la conexión de red propia y de su clúster u otros factores.
+
 :::
 
-The real work on a cluster gets done by the *worker* (or *compute*) *nodes*.
-Worker nodes come in many shapes and sizes, but generally are dedicated to long
-or hard tasks that require a lot of computational resources.
+El verdadero trabajo en un cluster lo hacen los *nodos de trabajo* (o *computación*). Los nodos de trabajo tienen muchas formas y tamaños, pero generalmente se dedican a tareas largas o difíciles que requieren muchos recursos computacionales.
 
-All interaction with the worker nodes is handled by a specialized piece of
-software called a scheduler (the scheduler used in this lesson is called
-**Slurm**). We'll learn more about how to use the
-scheduler to submit jobs next, but for now, it can also tell us more
-information about the worker nodes.
+Toda la interacción con los nodos trabajadores es manejada por una pieza especializada de software llamada planificador (el planificador utilizado en esta lección se llama **Slurm**). Aprenderemos más sobre cómo usar el planificador para enviar trabajos a continuación, pero por ahora, también puede darnos más información sobre los nodos trabajadores.
 
-For example, we can view all of the worker nodes by running the command
-`sinfo`.
+Por ejemplo, podemos ver todos los nodos trabajadores ejecutando el comando `sinfo`.
 
 ```bash
 [yourUsername@login1 ~] sinfo
@@ -211,34 +127,19 @@ node                  up   infinite      2   idle node[1-2]
 smnode                up   infinite      2   idle smnode[1-2]
 ```
 
-There are also specialized machines used for managing disk storage, user
-authentication, and other infrastructure-related tasks. Although we do not
-typically logon to or interact with these machines directly, they enable a
-number of key features like ensuring our user account and files are available
-throughout the HPC system.
+También hay máquinas especializadas que se utilizan para gestionar el almacenamiento en disco, la autenticación de usuarios y otras tareas relacionadas con la infraestructura. Aunque no solemos iniciar sesión o interactuar con estas máquinas directamente, permiten una serie de características clave como asegurar que nuestra cuenta de usuario y archivos están disponibles en todo el sistema HPC.
 
-## What\'s in a Node?
+## ¿Qué hay en un Nodo?
 
-All of the nodes in an HPC system have the same components as your own laptop
-or desktop: *CPUs* (sometimes also called *processors* or *cores*), *memory*
-(or *RAM*), and *disk* space. CPUs are a computer's tool for actually running
-programs and calculations. Information about a current task is stored in the
-computer's memory. Disk refers to all storage that can be accessed like a file
-system. This is generally storage that can hold data permanently, i.e. data is
-still there even if the computer has been restarted. While this storage can be
-local (a hard drive installed inside of it), it is more common for nodes to
-connect to a shared, remote fileserver or cluster of servers.
+Todos los nodos de un sistema HPC tienen los mismos componentes que su propio ordenador portátil o de sobremesa: *CPUs* (a veces también llamados *procesadores* o *cores*), *memoria* (o *RAM*) y *espacio de disco*. Las CPU son la herramienta de un ordenador para ejecutar programas y cálculos. La información sobre una tarea en curso se almacena en la memoria del ordenador. Disco se refiere a todo el almacenamiento al que se puede acceder como un sistema de archivos. Por lo general, se trata de un almacenamiento que puede guardar datos de forma permanente, es decir, los datos siguen ahí aunque se reinicie el ordenador. Aunque este almacenamiento puede ser local (un disco duro instalado en su interior), es más común que los nodos se conecten a un servidor de archivos compartido y remoto o a un clúster de servidores.
 
-![Node anatomy](fig/node_anatomy.png){max-width="20%" alt="Node anatomy" caption=""}
+![Anatomía del nodo](fig/node_anatomy.png){max-width="20%" alt="Anatomía del nodo" caption=""}
 
 ::: challenge
 
-## Explore Your Computer
+## Explore su ordenador
 
-Try to find out the number of CPUs and amount of memory available on your
-personal computer.
-Note that, if you're logged in to the remote computer cluster, you need to
-log out first. To do so, type `Ctrl+d` or `exit`:
+Intenta averiguar el número de CPUs y la cantidad de memoria disponible en tu ordenador personal. Ten en cuenta que, si has iniciado sesión en el clúster de ordenadores remotos, primero tienes que cerrar la sesión. Para ello, escriba `Ctrl+d` o `exit`:
 
 ```bash
 [yourUsername@login1 ~] exit
@@ -247,39 +148,38 @@ log out first. To do so, type `Ctrl+d` or `exit`:
 
 :::: solution
 
-There are several ways to do this. Most operating systems have a graphical
-system monitor, like the Windows Task Manager. More detailed information can
-sometimes be found on the command line. For example, some of the commands used
-on a Linux system are:
+Hay varias maneras de hacer esto. La mayoría de los sistemas operativos tienen un monitor gráfico del sistema, como el Administrador de tareas de Windows. A veces se puede encontrar información más detallada en la línea de comandos. Por ejemplo, algunos de los comandos utilizados en un sistema Linux son:
 
-Run system utilities
+Ejecutar utilidades del sistema
 
 ```bash
 [you@laptop:~]$ nproc --all
 [you@laptop:~]$ free -m
 ```
 
-Read from `/proc`
+Lectura de `/proc`
 
 ```bash
 [you@laptop:~]$ cat /proc/cpuinfo
 [you@laptop:~]$ cat /proc/meminfo
 ```
 
-Use a system monitor
+Utilizar un monitor del sistema
 
 ```bash
 [you@laptop:~]$ htop
 ```
 
 ::::
+
+
 :::
 
 ::: challenge
 
-## Explore the login node
+## Explorar el nodo de acceso
 
-Now compare the resources of your computer with those of the head node.
+Ahora compara los recursos de tu ordenador con los del nodo principal.
 
 :::: solution
 
@@ -289,37 +189,34 @@ Now compare the resources of your computer with those of the head node.
 [yourUsername@login1 ~] free -m
 ```
 
-You can get more information about the processors using `lscpu`,
-and a lot of detail about the memory by reading the file `/proc/meminfo`:
+Puedes obtener más información sobre los procesadores usando `lscpu`, y muchos detalles sobre la memoria leyendo el fichero `/proc/meminfo`:
 
 ```bash
 [yourUsername@login1 ~] less /proc/meminfo
 ```
 
-You can also explore the available filesystems using `df` to show **d**isk
-**f**ree space. The `-h` flag renders the sizes in a human-friendly format,
-i.e., GB instead of B. The **t**ype flag `-T` shows what kind of filesystem
-each resource is.
+También puedes explorar los sistemas de ficheros disponibles usando `df` para mostrar el espacio **d**isk **f**ree. La opción `-h` muestra los tamaños en un formato amigable, es decir, GB en lugar de B. La opción **t**ype `-T` muestra qué tipo de sistema de ficheros es cada recurso.
 
 ```bash
 [yourUsername@login1 ~] df -Th
 ```
+
 ::::
+
+
 :::
 
 ::: discussion
-The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're
-on the same login node (or compute node, later on). Networked filesystems
-(beegfs, cifs, gpfs, nfs, pvfs) will be similar --- but may include
-yourUsername, depending on how it is [mounted](
-https://en.wikipedia.org/wiki/Mount_(computing)).
+
+Los sistemas de ficheros locales (ext, tmp, xfs, zfs) dependerán de si estás en el mismo nodo de login (o nodo de computación, más adelante). Los sistemas de ficheros en red (beegfs, cifs, gpfs, nfs, pvfs) serán similares --- pero pueden incluir yourUsername, dependiendo de cómo esté [montado](https://en.wikipedia.org/wiki/Mount_(computing)).
+
 :::
 
 ::: callout
-## Shared Filesystems
 
-This is an important point to remember: files saved on one node
-(computer) are often available everywhere on the cluster!
+## Sistemas de archivos compartidos
+
+Es importante recordar que los archivos guardados en un nodo (ordenador) suelen estar disponibles en cualquier parte del clúster
 
 :::
 
@@ -338,31 +235,31 @@ the name, CPUs and memory available on one of the worker nodes:
 :::
 
 ::: discussion
-## Compare Your Computer, the login node and the compute node
-Compare your laptop's number of processors and memory with the numbers you
-see on the cluster head node and worker node. Discuss the differences with
-your neighbor.
 
-What implications do you think the differences might have on running your
-research work on the different systems and nodes?
+## Compare su ordenador, el nodo de inicio de sesión y el nodo de cálculo
+Compara el número de procesadores y memoria de tu portátil con los números que ves en el nodo cabeza del cluster y en el nodo trabajador. Discute las diferencias con tu vecino.
+
+¿Qué implicaciones crees que pueden tener las diferencias a la hora de ejecutar tu trabajo de investigación en los distintos sistemas y nodos?
+
 :::
 
 ::: callout
-## Differences Between Nodes
 
-Many HPC clusters have a variety of nodes optimized for particular workloads.
-Some nodes may have larger amount of memory, or specialized resources such as
-Graphical Processing Units (GPUs).
+## Diferencias entre nodos
+
+Muchos clusters HPC tienen una variedad de nodos optimizados para cargas de trabajo particulares. Algunos nodos pueden tener una mayor cantidad de memoria, o recursos especializados como Unidades de Procesamiento Gráfico (GPUs).
+
 :::
 
-With all of this in mind, we will now cover how to talk to the cluster's
-scheduler, and use it to start running our scripts and programs!
+Con todo esto en mente, ahora veremos cómo hablar con el planificador del clúster y utilizarlo para empezar a ejecutar nuestros scripts y programas
 
 ::: keypoints
- - "An HPC system is a set of networked machines."
- - "HPC systems typically provide login nodes and a set of worker nodes."
- - "The resources found on independent (worker) nodes can vary in volume and
-   type (amount of RAM, processor architecture, availability of network mounted
-   filesystems, etc.)."
- - "Files saved on one node are available on all nodes."
+
+ - "Un sistema HPC es un conjunto de máquinas conectadas en red"
+ - "Los sistemas HPC suelen proporcionar nodos de inicio de sesión y un conjunto de nodos trabajadores"
+ - "Los recursos que se encuentran en nodos independientes (trabajadores) pueden variar en volumen y tipo (cantidad de RAM, arquitectura del procesador, disponibilidad de sistemas de ficheros montados en red, etc.)."
+ - "Los archivos guardados en un nodo están disponibles en todos los nodos"
+
 :::
+
+

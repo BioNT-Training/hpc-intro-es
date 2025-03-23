@@ -1,268 +1,180 @@
 ---
-title: Connecting to a remote HPC system
+title: Conexión a un sistema HPC remoto
 teaching: 25
 exercises: 10
 ---
 
+
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Configure secure access to a remote HPC system.
-- Connect to a remote HPC system.
+- Configure el acceso seguro a un sistema HPC remoto.
+- Conéctate a un sistema HPC remoto.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How do I log in to a remote HPC system?
+- ¿Cómo me conecto a un sistema HPC remoto?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 
-## Secure Connections
+## Conexiones seguras
 
-The first step in using a cluster is to establish a connection from our laptop
-to the cluster. When we are sitting at a computer (or standing, or holding it
-in our hands or on our wrists), we have come to expect a visual display with
-icons, widgets, and perhaps some windows or applications: a *graphical user
-interface*, or GUI. Since computer clusters are remote resources that we
-connect to over slow or intermittent interfaces (WiFi and VPNs especially), it
-is more practical to use a *command-line interface*, or CLI, to send commands
-as plain-text. If a command returns output, it is printed as plain text as
-well. The commands we run today will not open a window to show graphical
-results.
+El primer paso para utilizar un cluster es establecer una conexión desde nuestro portátil al cluster. Cuando estamos sentados frente a un ordenador (o de pie, o sosteniéndolo en nuestras manos o en nuestras muñecas), hemos llegado a esperar una pantalla visual con iconos, widgets, y quizás algunas ventanas o aplicaciones: una *interfaz gráfica de usuario*, o GUI. Dado que los clusters de ordenadores son recursos remotos a los que nos conectamos a través de interfaces lentas o intermitentes (WiFi y VPNs especialmente), es más práctico usar una *interfaz de línea de comandos*, o CLI, para enviar comandos como texto plano. Si un comando devuelve una salida, también se imprime como texto plano. Los comandos que ejecutaremos hoy no abrirán una ventana para mostrar resultados gráficos.
 
-If you have ever opened the Windows Command Prompt or macOS Terminal, you have
-seen a CLI. If you have already taken The Carpentries' courses on the UNIX
-Shell or Version Control, you have used the CLI on your *local machine*
-extensively. The only leap to be made here is to open a CLI on a *remote machine*,
-while taking some precautions so that other folks on the network can't see (or
-change) the commands you're running or the results the remote machine sends
-back. We will use the Secure SHell protocol (or SSH) to open an encrypted
-network connection between two machines, allowing you to send \& receive text
-and data without having to worry about prying eyes.
+Si alguna vez has abierto el Símbolo del sistema de Windows o el Terminal de macOS, habrás visto una CLI. Si ya has tomado los cursos de The Carpentries sobre UNIX Shell o Version Control, has usado el CLI en tu *máquina local* extensivamente. El único salto a dar aquí es abrir un CLI en una *máquina remota*, tomando algunas precauciones para que otras personas en la red no puedan ver (o cambiar) los comandos que estás ejecutando o los resultados que la máquina remota envía de vuelta. Utilizaremos el protocolo Secure SHell (o SSH) para abrir una conexión de red encriptada entre dos máquinas, permitiéndote enviar y recibir texto y datos sin tener que preocuparte de miradas indiscretas.
 
-![](/fig/connect-to-remote.svg){max-width="50%" alt="Connect to cluster"}
+![](/fig/connect-to-remote.svg){max-width="50%" alt="Conectarse al clúster"}
 
 
-SSH clients are usually command-line tools, where you provide the remote
-machine address as the only required argument. If your username on the remote
-system differs from what you use locally, you must provide that as well. If
-your SSH client has a graphical front-end, such as PuTTY or MobaXterm, you will
-set these arguments before clicking "connect." From the terminal, you'll write
-something like `ssh userName@hostname`, where the argument is just like an
-email address: the "@" symbol is used to separate the personal ID from the
-address of the remote machine.
+Los clientes SSH suelen ser herramientas de línea de comandos en las que el único argumento necesario es la dirección de la máquina remota. Si tu nombre de usuario en el sistema remoto difiere del que utilizas localmente, debes proporcionarlo también. Si tu cliente SSH tiene un front-end gráfico, como PuTTY o MobaXterm, establecerás estos argumentos antes de hacer clic en "conectar" Desde el terminal, escribirás algo como `ssh userName@hostname`, donde el argumento es igual que una dirección de correo electrónico: el símbolo "@" se utiliza para separar el ID personal de la dirección de la máquina remota.
 
-When logging in to a laptop, tablet, or other personal device, a username,
-password, or pattern are normally required to prevent unauthorized access. In
-these situations, the likelihood of somebody else intercepting your password is
-low, since logging your keystrokes requires a malicious exploit or physical
-access. For systems like `login1` running an SSH server, anybody
-on the network can log in, or try to. Since usernames are often public or easy
-to guess, your password is often the weakest link in the security chain. Many
-clusters therefore forbid password-based login, requiring instead that you
-generate and configure a public-private key pair with a much stronger password.
-Even if your cluster does not require it, the next section will guide you
-through the use of SSH keys and an SSH agent to both strengthen your security
-*and* make it more convenient to log in to remote systems.
+Al iniciar sesión en un ordenador portátil, tableta u otro dispositivo personal, normalmente se requiere un nombre de usuario, una contraseña o un patrón para evitar el acceso no autorizado. En estas situaciones, la probabilidad de que alguien intercepte tu contraseña es baja, ya que para registrar tus pulsaciones de teclas se requiere un exploit malicioso o acceso físico. Para sistemas como `login1` que ejecutan un servidor SSH, cualquiera en la red puede iniciar sesión, o intentarlo. Dado que los nombres de usuario suelen ser públicos o fáciles de adivinar, la contraseña suele ser el eslabón más débil de la cadena de seguridad. Por lo tanto, muchos clusters prohíben el inicio de sesión basado en contraseña, requiriendo en su lugar que generes y configures un par de claves pública-privada con una contraseña mucho más fuerte. Incluso si tu cluster no lo requiere, la siguiente sección te guiará a través del uso de claves SSH y un agente SSH para reforzar tu seguridad *y* hacer más conveniente el inicio de sesión en sistemas remotos.
 
-### Better Security With SSH Keys
+### Mejor seguridad con claves SSH
 
-The [Lesson Setup](../learners/setup.md) provides instructions for installing
-a shell application with SSH. If you have not done so already, please open that
-shell application with a Unix-like command line interface to your system.
+La [Lesson Setup](../learners/setup.md) proporciona instrucciones para instalar una aplicación shell con SSH. Si aún no lo ha hecho, abra esa aplicación shell con una interfaz de línea de comandos tipo Unix en su sistema.
 
-SSH keys are an alternative method for authentication to obtain access to
-remote computing systems. They can also be used for authentication when
-transferring files or for accessing remote version control systems (such as
-[GitHub][gh-ssh]).
-In this section you will create a pair of SSH keys:
+Las claves SSH son un método alternativo de autenticación para obtener acceso a sistemas informáticos remotos. También se pueden utilizar para autenticarse al transferir archivos o para acceder a sistemas remotos de control de versiones (como [GitHub][gh-ssh]). En esta sección crearás un par de claves SSH:
 
-- a private key which you keep on your own computer, and
-- a public key which can be placed on any remote system you will access.
+- una clave privada que guardas en tu propio ordenador, y
+- una clave pública que puedes colocar en cualquier sistema remoto al que vayas a acceder.
 
-:::::::::::::::::::::::::::::::::::::::::  caution
+::::::::::::::::::::::::::::::::::::::::: caution
 
-## Private keys are your secure digital passport
+## Las claves privadas son tu pasaporte digital seguro
 
-A private key that is visible to anyone but you should be considered
-compromised, and must be destroyed. This includes having improper permissions
-on the directory it (or a copy) is stored in, traversing any network that is
-not secure (encrypted), attachment on unencrypted email, and even displaying
-the key on your terminal window.
+Una clave privada que sea visible para cualquiera excepto para ti debe considerarse comprometida y debe ser destruida. Esto incluye tener permisos inadecuados en el directorio en el que está almacenada (o una copia), atravesar cualquier red que no sea segura (encriptada), adjuntarla en un correo electrónico no encriptado, e incluso mostrar la clave en la ventana de tu terminal.
 
-Protect this key as if it unlocks your front door. In many ways, it does.
+Protege esta clave como si abriera la puerta de tu casa. En muchos sentidos, lo hace.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Regardless of the software or operating system you use, *please* choose a
-strong password or passphrase to act as another layer of protection for your
-private SSH key.
+Independientemente del software o sistema operativo que utilices, *por favor* elige una contraseña o frase de contraseña segura que actúe como otra capa de protección para tu clave SSH privada.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Considerations for SSH Key Passwords
+## Consideraciones sobre las contraseñas de las claves SSH
 
-When prompted, enter a strong password that you will remember. There are two
-common approaches to this:
+Cuando se le solicite, introduzca una contraseña segura que pueda recordar. Hay dos enfoques comunes para esto:
 
-1. Create a memorable passphrase with some punctuation and number-for-letter
-  substitutions, 32 characters or longer. Street addresses work well; just
-  be careful of social engineering or public records attacks.
-2. Use a password manager and its built-in password generator with all
-  character classes, 25 characters or longer. [KeePass][keepass] and
-  [BitWarden][bitwarden] are two good options.
-3. Nothing is *less* secure than a private key with no password. If you
-  skipped password entry by accident, go back and generate a new key pair
-  *with* a strong password.
+1. Crea una frase de contraseña memorable con algunos signos de puntuación y sustituciones de números por letras, de 32 caracteres o más. Las direcciones funcionan bien, pero ten cuidado con los ataques de ingeniería social o de registros públicos.
+2. Utiliza un gestor de contraseñas y su generador de contraseñas integrado con todas las clases de caracteres, de 25 caracteres o más. [KeePass][keepass] y [BitWarden][bitwarden] son dos buenas opciones.
+3. Nada es *menos* seguro que una clave privada sin contraseña. Si se ha saltado la introducción de la contraseña por accidente, vuelva atrás y genere un nuevo par de claves *con* una contraseña segura.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-#### SSH Keys on Linux, Mac, MobaXterm, and Windows Subsystem for Linux
+#### Claves SSH en Linux, Mac, MobaXterm y Windows Subsistema para Linux
 
-Once you have opened a terminal, check for existing SSH keys and filenames
-since existing SSH keys are overwritten.
+Una vez que haya abierto un terminal, compruebe si existen claves SSH y nombres de archivo, ya que las claves SSH existentes se sobrescriben.
 
 ```bash
 [you@laptop:~]$ ls ~/.ssh/
 ```
 
-If `~/.ssh/id_ed25519` already exists, you will need to specify
-a different name for the new key-pair.
+Si `~/.ssh/id_ed25519` ya existe, tendrá que especificar un nombre diferente para el nuevo par de claves.
 
-Generate a new public-private key pair using the following command, which will
-produce a stronger key than the `ssh-keygen` default by invoking these flags:
+Genera un nuevo par de claves pública-privada usando el siguiente comando, que producirá una clave más fuerte que la `ssh-keygen` por defecto invocando estas banderas:
 
-- `-a` (default is 16): number of rounds of passphrase derivation; increase to
-  slow down brute force attacks.
-- `-t` (default is [rsa][wiki-rsa]): specify the "type" or cryptographic
-  algorithm. `ed25519` specifies [EdDSA][wiki-dsa] with a 256-bit key;
-  it is faster than RSA with a comparable strength.
-- `-f` (default is /home/user/.ssh/id\_algorithm): filename to store your
-  private key. The public key filename will be identical, with a `.pub`
-  extension added.
+- `-a` (por defecto es 16): número de rondas de derivación de la frase de contraseña; aumentar para ralentizar los ataques de fuerza bruta.
+- `-t` (por defecto es [rsa][wiki-rsa]): especifica el "tipo" o algoritmo criptográfico. `ed25519` especifica [EdDSA][wiki-dsa] con una clave de 256 bits; es más rápido que RSA con una fuerza comparable.
+- `-f` (por defecto es /home/usuario/.ssh/id_algorithm): nombre de archivo para almacenar tu clave privada. El nombre de archivo de la clave pública será idéntico, con una extensión `.pub` añadida.
 
 ```bash
 [you@laptop:~]$ ssh-keygen -a 100 -f ~/.ssh/id_ed25519 -t ed25519
 ```
 
-When prompted, enter a strong password with the
-[above considerations in mind](#considerations-for-ssh-key-passwords).
-Note that the terminal will not appear to change while you type the password:
-this is deliberate, for your security. You will be prompted to type it again,
-so don't worry too much about typos.
+Cuando se le solicite, introduzca una contraseña segura teniendo en cuenta las [consideraciones anteriores](#considerations-for-ssh-key-passwords). Ten en cuenta que el terminal no parecerá cambiar mientras escribes la contraseña: esto es deliberado, por tu seguridad. Se le pedirá que la escriba de nuevo, así que no se preocupe demasiado por los errores tipográficos.
 
-Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
+Echa un vistazo en `~/.ssh` (utiliza `ls ~/.ssh`). Debería ver dos archivos nuevos:
 
-- your private key (`~/.ssh/id_ed25519`): *do not share with anyone!*
-- the shareable public key (`~/.ssh/id_ed25519.pub`): if a system administrator
-  asks for a key, this is the one to send. It is also safe to upload to
-  websites such as GitHub: it is meant to be seen.
+- su clave privada (`~/.ssh/id_ed25519`): *no la compartas con nadie
+- la clave pública compartible (`~/.ssh/id_ed25519.pub`): si un administrador del sistema te pide una clave, ésta es la que debes enviar. También es segura para subir a sitios web como GitHub: está pensada para ser vista.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Use RSA for Older Systems
+## Usar RSA para sistemas antiguos
 
-If key generation failed because ed25519 is not available, try using the older
-(but still strong and trustworthy) [RSA][wiki-rsa] cryptosystem. Again, first
-check for an existing key:
+Si la generación de claves falló porque ed25519 no está disponible, intenta usar el criptosistema más antiguo (pero aún fuerte y confiable) [RSA][wiki-rsa]. De nuevo, primero comprueba si existe una clave:
 
 ```bash
 [you@laptop:~]$ ls ~/.ssh/
 ```
 
-If `~/.ssh/id_rsa` already exists, you will need to specify choose a different
-name for the new key-pair. Generate it as above, with the following extra flags:
+Si `~/.ssh/id_rsa` ya existe, tendrás que especificar elegir un nombre diferente para el nuevo par de claves. Genérelo como arriba, con las siguientes banderas adicionales:
 
-- `-b` sets the number of bits in the key. The default is 2048.
-  EdDSA uses a fixed key length, so this flag would have no effect.
-- `-o` (no default): use the OpenSSH key format,
-  rather than PEM.
+- `-b` establece el número de bits de la clave. El valor predeterminado es 2048. EdDSA utiliza una longitud de clave fija, por lo que esta bandera no tendría ningún efecto.
+- `-o` (no por defecto): utiliza el formato de clave OpenSSH, en lugar de PEM.
 
 ```bash
 [you@laptop:~]$ ssh-keygen -a 100 -b 4096 -f ~/.ssh/id_rsa -o -t rsa
 ```
 
-When prompted, enter a strong password with the
-[above considerations in mind](#considerations-for-ssh-key-passwords).
+Cuando se le solicite, introduzca una contraseña segura teniendo en cuenta las [consideraciones anteriores](#considerations-for-ssh-key-passwords).
 
-Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
+Echa un vistazo en `~/.ssh` (utiliza `ls ~/.ssh`). Debería ver dos archivos nuevos:
 
-- your private key (`~/.ssh/id_rsa`): *do not share with anyone!*
-- the shareable public key (`~/.ssh/id_rsa.pub`): if a system administrator
-  asks for a key, this is the one to send. It is also safe to upload to
-  websites such as GitHub: it is meant to be seen.
-  
+- su clave privada (`~/.ssh/id_rsa`): *no la compartas con nadie
+- la clave pública compartible (`~/.ssh/id_rsa.pub`): si un administrador del sistema te pide una clave, ésta es la que debes enviar. También es segura para subir a sitios web como GitHub: está pensada para ser vista.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-#### SSH Keys on PuTTY
+#### Claves SSH en PuTTY
 
-If you are using PuTTY on Windows, download and use `puttygen` to generate the
-key pair. See the [PuTTY documentation][putty-gen] for details.
+Si utiliza PuTTY en Windows, descargue y utilice `puttygen` para generar el par de claves. Consulte la [documentación de PuTTY][putty-gen] para más detalles.
 
-- Select `EdDSA` as the key type.
-- Select `255` as the key size or strength.
-- Click on the "Generate" button.
-- You do not need to enter a comment.
-- When prompted, enter a strong password with the
-  [above considerations in mind](#considerations-for-ssh-key-passwords).
-- Save the keys in a folder no other users of the system can read.
+- Selecciona `EdDSA` como tipo de clave.
+- Seleccione `255` como tamaño o fuerza de la clave.
+- Haz clic en el botón "Generar".
+- No es necesario introducir un comentario.
+- Cuando se le solicite, introduzca una contraseña segura teniendo en cuenta las [consideraciones anteriores](#considerations-for-ssh-key-passwords).
+- Guarda las claves en una carpeta que ningún otro usuario del sistema pueda leer.
 
-Take a look in the folder you specified. You should see two new files:
+Echa un vistazo a la carpeta que has especificado. Debería ver dos archivos nuevos:
 
-- your private key (`id_ed25519`): *do not share with anyone!*
-- the shareable public key (`id_ed25519.pub`): if a system administrator
-  asks for a key, this is the one to send. It is also safe to upload to
-  websites such as GitHub: it is meant to be seen.
+- su clave privada (`id_ed25519`): *no la compartas con nadie
+- la clave pública compartible (`id_ed25519.pub`): si un administrador del sistema te pide una clave, ésta es la que debes enviar. También es segura para subir a sitios web como GitHub: está pensada para ser vista.
 
-### SSH Agent for Easier Key Handling
+### Agente SSH para facilitar el manejo de claves
 
-An SSH key is only as strong as the password used to unlock it, but on the
-other hand, typing out a complex password every time you connect to a machine
-is tedious and gets old very fast. This is where the [SSH Agent][ssh-agent]
-comes in.
+Una clave SSH es tan fuerte como la contraseña utilizada para desbloquearla, pero por otro lado, escribir una contraseña compleja cada vez que te conectas a una máquina es tedioso y envejece muy rápido. Aquí es donde entra el [Agente SSH][ssh-agent].
 
-Using an SSH Agent, you can type your password for the private key once, then
-have the Agent remember it for some number of hours or until you log off.
-Unless some nefarious actor has physical access to your machine, this keeps the
-password safe, and removes the tedium of entering the password multiple times.
+Usando un Agente SSH, puede escribir su contraseña para la clave privada una vez, y luego hacer que el Agente la recuerde durante un número de horas o hasta que cierre la sesión. A menos que algún actor nefasto tenga acceso físico a su máquina, esto mantiene la contraseña segura, y elimina el tedio de introducir la contraseña varias veces.
 
-Just remember your password, because once it expires in the Agent, you have to
-type it in again.
+Recuerda tu contraseña, porque una vez que caduque en el Agente, tendrás que escribirla de nuevo.
 
-#### SSH Agents on Linux, macOS, and Windows
+#### Agentes SSH en Linux, macOS y Windows
 
-Open your terminal application and check if an agent is running:
+Abre tu aplicación de terminal y comprueba si se está ejecutando un agente:
 
 ```bash
 [you@laptop:~]$ ssh-add -l
 ```
 
-- If you get an error like this one,
-  
+- Si obtiene un error como el siguiente,
+
   ```error
   Error connecting to agent: No such file or directory
   ```
-  
-  ... then you need to launch the agent as follows:
-  
+
+  ... entonces necesitas lanzar el agente como sigue:
+
   ```bash
   [you@laptop:~]$ eval $(ssh-agent)
   ```
-  
-  :::::::::::::::::::::::::::::::::::::::::  callout
-  
-  ## What's in a `$(...)`?
-  
-  The syntax of this SSH Agent command is unusual, based on what we've seen
-  in the UNIX Shell lesson. This is because the `ssh-agent` command creates
-  opens a connection that only you have access to, and prints a series of
-  shell commands that can be used to reach it -- but *does not execute them!*
-  
+
+  ::::::::::::::::::::::::::::::::::::::::: callout
+
+  ## ¿Qué hay en `$(...)`?
+
+  La sintaxis de este comando de Agente SSH es inusual, basado en lo que hemos visto en la lección de UNIX Shell. Esto es porque el comando `ssh-agent` crea abre una conexión a la que sólo usted tiene acceso, e imprime una serie de comandos shell que pueden ser usados para alcanzarla -- ¡pero *no los ejecuta!*
+
   ```bash
   [you@laptop:~]$ ssh-agent
   ```
-  
+
   ```output
   SSH_AUTH_SOCK=/tmp/ssh-Zvvga2Y8kQZN/agent.131521;
   export SSH_AUTH_SOCK;
@@ -270,19 +182,17 @@ Open your terminal application and check if an agent is running:
   export SSH_AGENT_PID;
   echo Agent pid 131522;
   ```
-  
-  The `eval` command interprets this text output as commands and allows you
-  to access the SSH Agent connection you just created.
-  
-  You could run each line of the `ssh-agent` output yourself, and
-  achieve the same result. Using `eval` just makes this easier.
-  
-  
+
+  El comando `eval` interpreta esta salida de texto como comandos y le permite acceder a la conexión del Agente SSH que acaba de crear.
+
+  Puede ejecutar cada línea de la salida `ssh-agent` usted mismo y obtener el mismo resultado. El uso de `eval` facilita las cosas.
+
+
   ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-- Otherwise, your agent is already running: don't mess with it.
+- De lo contrario, su agente ya se está ejecutando: no se meta con él.
 
-Add your key to the agent, with session expiration after 8 hours:
+Añade tu clave al agente, con expiración de sesión después de 8 horas:
 
 ```bash
 [you@laptop:~]$ ssh-add -t 8h ~/.ssh/id_ed25519
@@ -294,15 +204,13 @@ Identity added: .ssh/id_ed25519
 Lifetime set to 86400 seconds
 ```
 
-For the duration (8 hours), whenever you use that key, the SSH Agent will
-provide the key on your behalf without you having to type a single keystroke.
+Mientras dure (8 horas), siempre que utilices esa clave, el Agente SSH proporcionará la clave en tu nombre sin que tengas que teclear ni una sola tecla.
 
-#### SSH Agent on PuTTY
+#### Agente SSH en PuTTY
 
-If you are using PuTTY on Windows, download and use `pageant` as the SSH agent.
-See the [PuTTY documentation][putty-agent].
+Si utiliza PuTTY en Windows, descargue y utilice `pageant` como agente SSH. Consulte la [documentación de PuTTY][putty-agent].
 
-### Transfer Your Public Key
+### Transfiere tu clave pública
 
 ```bash
 [you@laptop:~]$ scp ~/.ssh/id_ed25519.pub yourUsername@cluster.hpc-carpentry.org:~/
@@ -310,45 +218,25 @@ See the [PuTTY documentation][putty-agent].
 
 
 
-## Log In to the Cluster
+## Entrar en el Cluster
 
-Go ahead and open your terminal or graphical SSH client, then log in to the
-cluster. Replace `yourUsername` with your username or the one
-supplied by the instructors.
+Abre tu terminal o cliente gráfico SSH, e inicia sesión en el clúster. Sustituye `yourUsername` por tu nombre de usuario o el suministrado por los instructores.
 
 ```bash
 [you@laptop:~]$ ssh yourUsername@cluster.hpc-carpentry.org
 ```
 
-You may be asked for your password. Watch out: the characters you type after
-the password prompt are not displayed on the screen. Normal output will resume
-once you press `Enter`.
+Es posible que se te pida la contraseña. Atención: los caracteres que escriba después de la solicitud de contraseña no se mostrarán en pantalla. La salida normal se reanudará cuando pulse `Enter`.
 
-You may have noticed that the prompt changed when you logged into the remote
-system using the terminal (if you logged in using PuTTY this will not apply
-because it does not offer a local terminal). This change is important because
-it can help you distinguish on which system the commands you type will be run
-when you pass them into the terminal. This change is also a small complication
-that we will need to navigate throughout the workshop. Exactly what is displayed
-as the prompt (which conventionally ends in `$`) in the terminal when it is
-connected to the local system and the remote system will typically be different
-for every user. We still need to indicate which system we are entering commands
-on though so we will adopt the following convention:
+Puede que haya notado que el prompt cambió cuando se conectó al sistema remoto usando el terminal (si se conectó usando PuTTY esto no se aplicará porque no ofrece un terminal local). Este cambio es importante porque puede ayudarte a distinguir en qué sistema se ejecutarán los comandos que escribas cuando los pases a la terminal. Este cambio es también una pequeña complicación que tendremos que sortear a lo largo del taller. Exactamente lo que se muestra como prompt (que convencionalmente termina en `$`) en la terminal cuando está conectada al sistema local y al sistema remoto será típicamente diferente para cada usuario. Aún así, necesitamos indicar en qué sistema estamos introduciendo comandos, por lo que adoptaremos la siguiente convención:
 
-- `[you@laptop:~]$` when the command is to be entered on a terminal
-  connected to your local computer
-- `[yourUsername@login1 ~]` when the command is to be entered on a
-  terminal connected to the remote system
-- `$` when it really doesn't matter which system the terminal is connected to.
+- `[you@laptop:~]$` cuando el comando deba introducirse en un terminal conectado a su ordenador local
+- `[yourUsername@login1 ~]` cuando el comando deba introducirse en un terminal conectado al sistema remoto
+- `$` cuando realmente no importa a qué sistema está conectado el terminal.
 
-## Looking Around Your Remote Home
+## Echando un vistazo a tu casa remota
 
-Very often, many users are tempted to think of a high-performance computing
-installation as one giant, magical machine. Sometimes, people will assume that
-the computer they've logged onto is the entire computing cluster. So what's
-really happening? What computer have we logged on to? The name of the current
-computer we are logged onto can be checked with the `hostname` command. (You
-may also notice that the current hostname is also part of our prompt!)
+Muy a menudo, muchos usuarios se ven tentados a pensar que una instalación de computación de alto rendimiento es una máquina gigante y mágica. A veces, la gente asume que el ordenador en el que han iniciado sesión es todo el clúster de computación. Pero, ¿qué ocurre realmente? ¿En qué ordenador hemos iniciado sesión? El nombre del ordenador en el que hemos iniciado sesión se puede comprobar con el comando `hostname`. (¡También puedes notar que el nombre de host actual es también parte de nuestro prompt!)
 
 ```bash
 [yourUsername@login1 ~] hostname
@@ -358,8 +246,7 @@ may also notice that the current hostname is also part of our prompt!)
 login1
 ```
 
-So, we're definitely on the remote machine. Next, let's find out where we are
-by running `pwd` to **p**rint the **w**orking **d**irectory.
+Ya estamos en la máquina remota. A continuación, vamos a averiguar dónde estamos ejecutando `pwd` para **p**rintar el **d**irectorio **de trabajo.
 
 ```bash
 [yourUsername@login1 ~] pwd
@@ -369,7 +256,7 @@ by running `pwd` to **p**rint the **w**orking **d**irectory.
 /home/yourUsername
 ```
 
-Great, we know where we are! Let's see what's in our current directory:
+¡Genial, ya sabemos dónde estamos! Veamos qué hay en nuestro directorio actual:
 
 ```bash
 [yourUsername@login1 ~] ls
@@ -379,10 +266,7 @@ Great, we know where we are! Let's see what's in our current directory:
 id_ed25519.pub
 ```
 
-The system administrators may have configured your home directory with some
-helpful files, folders, and links (shortcuts) to space reserved for you on
-other filesystems. If they did not, your home directory may appear empty. To
-double-check, include hidden files in your directory listing:
+Es posible que los administradores del sistema hayan configurado tu directorio de inicio con algunos archivos, carpetas y enlaces (accesos directos) útiles al espacio reservado para ti en otros sistemas de archivos. Si no lo han hecho, tu directorio personal puede aparecer vacío. Para volver a comprobarlo, incluya los archivos ocultos en su listado de directorios:
 
 ```bash
 [yourUsername@login1 ~] ls -a
@@ -393,45 +277,33 @@ double-check, include hidden files in your directory listing:
   ..           .ssh
 ```
 
-In the first column, `.` is a reference to the current directory and `..` a
-reference to its parent (`/home`). You may or may not see
-the other files, or files like them: `.bashrc` is a shell configuration file,
-which you can edit with your preferences; and `.ssh` is a directory storing SSH
-keys and a record of authorized connections.
+En la primera columna, `.` es una referencia al directorio actual y `..` una referencia a su padre (`/home`). Puede que veas o no los otros ficheros, o ficheros como ellos: `.bashrc` es un fichero de configuración del shell, que puedes editar con tus preferencias; y `.ssh` es un directorio que almacena claves SSH y un registro de conexiones autorizadas.
 
-### Install Your SSH Key
+### Instale su clave SSH
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## There May Be a Better Way
+## Puede haber una manera mejor
 
-Policies and practices for handling SSH keys vary between HPC clusters:
-follow any guidance provided by the cluster administrators or
-documentation. In particular, if there is an online portal for managing SSH
-keys, use that instead of the directions outlined here.
+Las políticas y prácticas para el manejo de claves SSH varían entre clusters HPC: siga cualquier guía proporcionada por los administradores del cluster o la documentación. En particular, si existe un portal en línea para la gestión de claves SSH, utilícelo en lugar de las instrucciones descritas aquí.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-If you transferred your SSH public key with `scp`, you should see
-`id_ed25519.pub` in your home directory. To "install" this key, it must be
-listed in a file named `authorized_keys` under the `.ssh` folder.
+Si transfirió su clave pública SSH con `scp`, debería ver `id_ed25519.pub` en su directorio personal. Para "instalar" esta clave, debe aparecer en un archivo llamado `authorized_keys` en la carpeta `.ssh`.
 
-If the `.ssh` folder was not listed above, then it does not yet
-exist: create it.
+Si la carpeta `.ssh` no aparece en la lista anterior, es que aún no existe: créala.
 
 ```bash
 [yourUsername@login1 ~] mkdir ~/.ssh
 ```
 
-Now, use `cat` to print your public key, but redirect the output, appending it
-to the `authorized_keys` file:
+Ahora, utiliza `cat` para imprimir tu clave pública, pero redirige la salida, añadiéndola al archivo `authorized_keys`:
 
 ```bash
 [yourUsername@login1 ~] cat ~/id_ed25519.pub >> ~/.ssh/authorized_keys
 ```
 
-That's all! Disconnect, then try to log back into the remote: if your key and
-agent have been configured correctly, you should not be prompted for the
-password for your SSH key.
+¡Eso es todo! Desconéctese e intente conectarse de nuevo al remoto: si su clave y agente han sido configurados correctamente, no se le pedirá la contraseña de su clave SSH.
 
 ```bash
 [yourUsername@login1 ~] logout
@@ -452,10 +324,11 @@ password for your SSH key.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- An HPC system is a set of networked machines.
-- HPC systems typically provide login nodes and a set of worker nodes.
-- The resources found on independent (worker) nodes can vary in volume and type
-  (amount of RAM, processor architecture, availability of network mounted
-  filesystems, etc.).
-- Files saved on one node are available on all nodes.
+- Un sistema HPC es un conjunto de máquinas conectadas en red.
+- Los sistemas HPC suelen proporcionar nodos de inicio de sesión y un conjunto de nodos trabajadores.
+- Los recursos que se encuentran en los nodos independientes (trabajadores) pueden variar en volumen y tipo (cantidad de RAM, arquitectura del procesador, disponibilidad de sistemas de archivos montados en red, etc.).
+- Los archivos guardados en un nodo están disponibles en todos los nodos.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
