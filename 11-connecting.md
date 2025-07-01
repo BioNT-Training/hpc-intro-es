@@ -234,7 +234,7 @@ Puede que haya notado que el prompt cambió cuando se conectó al sistema remoto
 - `[yourUsername@login1 ~]` cuando el comando deba introducirse en un terminal conectado al sistema remoto
 - `$` cuando realmente no importa a qué sistema está conectado el terminal.
 
-## Echando un vistazo a tu casa remota
+## Echando un vistazo a tu home remoto
 
 Muy a menudo, muchos usuarios se ven tentados a pensar que una instalación de computación de alto rendimiento es una máquina gigante y mágica. A veces, la gente asume que el ordenador en el que han iniciado sesión es todo el clúster de computación. Pero, ¿qué ocurre realmente? ¿En qué ordenador hemos iniciado sesión? El nombre del ordenador en el que hemos iniciado sesión se puede comprobar con el comando `hostname`. (¡También puedes notar que el nombre de host actual es también parte de nuestro prompt!)
 
@@ -246,7 +246,7 @@ Muy a menudo, muchos usuarios se ven tentados a pensar que una instalación de c
 login1
 ```
 
-Ya estamos en la máquina remota. A continuación, vamos a averiguar dónde estamos ejecutando `pwd` para **p**rintar el **d**irectorio **de trabajo.
+Ya estamos en la máquina remota. A continuación, vamos a averiguar dónde estamos ejecutando `pwd` para printar el directorio de trabajo (print working directory).
 
 ```bash
 [yourUsername@login1 ~] pwd
