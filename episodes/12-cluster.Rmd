@@ -79,13 +79,13 @@ La capa más profunda debe diferir: ``r config$remote$user`` es exclusivamente s
 
 Si ambos tienen directorios vacíos, se verán idénticos. Si tú o tu vecino habéis usado el sistema antes, puede haber diferencias. ¿En qué estás trabajando?
 
-Utilice `pwd` para **p**imprimir la ruta del directorio **d**de trabajo:
+Utilice `pwd` para imprimir la ruta del directorio de trabajo:
 
 ```bash
 `r config$remote$prompt` pwd
 ```
 
-Puede ejecutar `ls` para **l**i**s**t el contenido del directorio, aunque es posible que no aparezca nada (si no se han proporcionado ficheros). Para estar seguro, utilice también el indicador `-a` para mostrar los archivos ocultos.
+Puede ejecutar `ls` para **l**i**s**tar el contenido del directorio, aunque es posible que no aparezca nada (si no se han proporcionado ficheros). Para estar seguro, utilice también el indicador `-a` para mostrar los archivos ocultos.
 
 ```bash
 `r config$remote$prompt` ls -a

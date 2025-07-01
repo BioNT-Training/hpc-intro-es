@@ -279,9 +279,9 @@ La sintaxis es similar a `scp`. Para transferir *a* otro ordenador con opciones 
 
 Las opciones son:
 
-- `-a` (**un**archivo) para preservar las marcas de tiempo de los archivos, los permisos y las carpetas, entre otras cosas; implica recursión
+- `-a` (**a**rchivo) para preservar las marcas de tiempo de los archivos, los permisos y las carpetas, entre otras cosas; implica recursión
 - `-v` (**v**erbose) para obtener una salida detallada que le ayude a monitorizar la transferencia
-- `-P` (partial/progress) para preservar los archivos parcialmente transferidos en caso de interrupción y también muestra el progreso de la transferencia.
+- `-P` (**p**artial/progress) para preservar los archivos parcialmente transferidos en caso de interrupción y también muestra el progreso de la transferencia.
 
 Para copiar recursivamente un directorio, podemos utilizar las mismas opciones:
 

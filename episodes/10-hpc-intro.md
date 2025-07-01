@@ -29,7 +29,7 @@ En todos estos casos, se necesita acceso a más ordenadores (y más grandes). Es
 
 ## Presentación de Jargon Busting
 
-Abra el [HPC Jargon Buster](../files/jargon#p1) en una nueva pestaña. Para presentar el contenido, pulse `C` para abrir una **c**lona en una ventana separada, después pulse `P` para cambiar el modo de **p**presentación.
+Abra el [HPC Jargon Buster](../files/jargon#p1) en una nueva pestaña. Para presentar el contenido, pulse `C` para abrir un **c**lone en una ventana separada, después pulse `P` para cambiar el modo de **p**resentación.
 
 :::::::::::::::::::::::::::::::::::::: challenge
 
