@@ -57,6 +57,16 @@
           </ul></li>
       </div>
 
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+          <b>Español</b>  <i data-feather="chevron-down"></i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"><li><button class="dropdown-item" type="button"><a href="https://biont-training.github.io/hpc-intro-de" class="external-link">Deutsch</a></button></li>
+          <li><button class="dropdown-item" type="button"><a href="https://biont-training.github.io/hpc-intro-en" class="external-link">English</a></button></li>
+          <li><button class="dropdown-item" type="button"><a href="https://biont-training.github.io/hpc-intro-it" class="external-link">Italiano</a></button></li>
+        </ul></div>
+
       <div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Vista de estudiante <i data-feather="chevron-down"></i>
@@ -364,7 +374,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Conexión a un sistema HPC remoto</h1>
-        <p>Última actualización: 2025-08-04 |
+        <p>Última actualización: 2026-01-15 |
 
         <a href="https://github.com/ocaisa/probable-pancake/edit/main/episodes/11-connecting.Rmd" class="external-link">Mejora esta página <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -465,8 +475,10 @@ que vayas a acceder.</li>
 <div class="callout-square">
 <i class="callout-icon" data-feather="alert-triangle"></i>
 </div>
+<span class="callout-header">Caution</span>
 <div id="las-claves-privadas-son-tu-pasaporte-digital-seguro" class="callout-inner">
-<h3 class="callout-title">Las claves privadas son tu pasaporte digital seguro</h3>
+<h3 class="callout-title">Las claves privadas son tu pasaporte digital
+seguro</h3>
 <div class="callout-content">
 <p>Una clave privada que sea visible para cualquiera excepto para ti
 debe considerarse comprometida y debe ser destruida. Esto incluye tener
@@ -486,8 +498,10 @@ actúe como otra capa de protección para tu clave SSH privada.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="consideraciones-sobre-las-contraseñas-de-las-claves-ssh" class="callout-inner">
-<h3 class="callout-title">Consideraciones sobre las contraseñas de las claves SSH</h3>
+<h3 class="callout-title">Consideraciones sobre las contraseñas de las
+claves SSH</h3>
 <div class="callout-content">
 <p>Cuando se le solicite, introduzca una contraseña segura que pueda
 recordar. Hay dos enfoques comunes para esto:</p>
@@ -558,6 +572,7 @@ pensada para ser vista.</li>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="usar-rsa-para-sistemas-antiguos" class="callout-inner">
 <h3 class="callout-title">Usar RSA para sistemas antiguos</h3>
 <div class="callout-content">
@@ -660,10 +675,11 @@ agente:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">[you@laptop:~]$</span> eval <span class="va">$(</span><span class="fu">ssh-agent</span><span class="va">)</span></span></code></pre>
 </div>
-<div id="callout3" class="callout">
+<div id="qué-hay-en-..." class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div class="callout-inner">
 <h3 class="callout-title">¿Qué hay en
 <code>$(...)</code>?</h3>
@@ -839,6 +855,7 @@ que almacena claves SSH y un registro de conexiones autorizadas.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="puede-haber-una-manera-mejor" class="callout-inner">
 <h3 class="callout-title">Puede haber una manera mejor</h3>
 <div class="callout-content">
@@ -886,8 +903,8 @@ pedirá la contraseña de su clave SSH.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
+<span class="callout-header">Puntos Clave</span>
 <div class="callout-inner">
-<h3 class="callout-title">Puntos Clave</h3>
 <div class="callout-content">
 <ul><li>Un sistema HPC es un conjunto de máquinas conectadas en red.</li>
 <li>Los sistemas HPC suelen proporcionar nodos de inicio de sesión y un
@@ -931,15 +948,17 @@ nodos.</li>
 	
         | <a href="https://github.com/ocaisa/probable-pancake/blob/main/CONTRIBUTING.md" class="external-link">Contribuir</a>
         | <a href="https://github.com/ocaisa/probable-pancake/" class="external-link">Fuente</a></p>
-				<p><a href="https://github.com/ocaisa/probable-pancake/blob/main/CITATION" class="external-link">Cita</a> | <a href="mailto:team@carpentries.org">Contacto</a> | <a href="https://carpentries.org/about/" class="external-link">Acerca de</a></p>
-			</div>
-			<div class="col-md-6">
+        <p>
+        <a href="https://github.com/ocaisa/probable-pancake/blob/main/" class="external-link">Cita</a>
+        | <a href="mailto:team@carpentries.org">Contacto</a> | <a href="https://carpentries.org/about/" class="external-link">Acerca de</a></p>
+		</div>
+		<div class="col-md-6">
 
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Plantilla compartida bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> por <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Construido con <a href="https://github.com/carpentries/sandpaper/tree/0.16.12" class="external-link">sandpaper (0.16.12)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a> y <a href="https://github.com/carpentries/varnish/tree/1.0.6" class="external-link">varnish (1.0.6)</a></p>
-			</div>
+        <p>Construido con <a href="https://github.com/carpentries/sandpaper/tree/0.17.3" class="external-link">sandpaper (0.17.3)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a> y <a href="https://github.com/carpentries/varnish/tree/1.0.9" class="external-link">varnish (1.0.9)</a></p>
+		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
 		<a href="#top">
@@ -960,8 +979,8 @@ nodos.</li>
   "url": "https://ocaisa.github.io/probable_pancake/11-connecting.html",
   "identifier": "https://ocaisa.github.io/probable_pancake/11-connecting.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2025-08-04",
-  "datePublished": "2025-08-04"
+  "dateModified": "2026-01-15",
+  "datePublished": "2026-01-15"
 }
 
   </script><script>

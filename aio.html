@@ -75,6 +75,18 @@
 </li>
       </div>
 
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+          <b>Español</b>  <i data-feather="chevron-down"></i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+<li><button class="dropdown-item" type="button"><a href="https://biont-training.github.io/hpc-intro-de" class="external-link">Deutsch</a></button></li>
+          <li><button class="dropdown-item" type="button"><a href="https://biont-training.github.io/hpc-intro-en" class="external-link">English</a></button></li>
+          <li><button class="dropdown-item" type="button"><a href="https://biont-training.github.io/hpc-intro-it" class="external-link">Italiano</a></button></li>
+        </ul>
+</div>
+
       <div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Vista de estudiante <i data-feather="chevron-down"></i>
@@ -418,7 +430,7 @@
         
 <section id="aio-10-hpc-intro"><p>Content from <a href="10-hpc-intro.html">¿Por qué utilizar un clúster?</a></p>
 <hr>
-<p>Última actualización: 2025-08-04 |
+<p>Última actualización: 2026-01-15 |
 
         <a href="https://github.com/ocaisa/probable-pancake/edit/main/episodes/10-hpc-intro.md" class="external-link">Mejora esta página <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -506,6 +518,7 @@ pestaña. Para presentar el contenido, pulse <code>C</code> para abrir un
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="nunca-he-usado-un-servidor-verdad" class="callout-inner">
 <h3 class="callout-title">Nunca he usado un servidor, ¿verdad?</h3>
 <div class="callout-content">
@@ -522,7 +535,7 @@ proporcionarle resultados.</p>
   Algunas ideas
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ul>
 <li>Comprobación del correo electrónico: su ordenador (posiblemente en
@@ -559,8 +572,8 @@ se realizan en paralelo mediante una gran colección de servidores
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
+<span class="callout-header">Puntos Clave</span>
 <div class="callout-inner">
-<h3 class="callout-title">Puntos Clave</h3>
 <div class="callout-content">
 <ul>
 <li>La computación de alto rendimiento (HPC) suele implicar la conexión
@@ -576,7 +589,7 @@ una interfaz de línea de comandos.</li>
 </div>
 </section></section><section id="aio-11-connecting"><p>Content from <a href="11-connecting.html">Conexión a un sistema HPC remoto</a></p>
 <hr>
-<p>Última actualización: 2025-08-04 |
+<p>Última actualización: 2026-01-15 |
 
         <a href="https://github.com/ocaisa/probable-pancake/edit/main/episodes/11-connecting.Rmd" class="external-link">Mejora esta página <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -680,8 +693,10 @@ que vayas a acceder.</li>
 <div class="callout-square">
 <i class="callout-icon" data-feather="alert-triangle"></i>
 </div>
+<span class="callout-header">Caution</span>
 <div id="las-claves-privadas-son-tu-pasaporte-digital-seguro" class="callout-inner">
-<h3 class="callout-title">Las claves privadas son tu pasaporte digital seguro</h3>
+<h3 class="callout-title">Las claves privadas son tu pasaporte digital
+seguro</h3>
 <div class="callout-content">
 <p>Una clave privada que sea visible para cualquiera excepto para ti
 debe considerarse comprometida y debe ser destruida. Esto incluye tener
@@ -701,8 +716,10 @@ actúe como otra capa de protección para tu clave SSH privada.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="consideraciones-sobre-las-contraseñas-de-las-claves-ssh" class="callout-inner">
-<h3 class="callout-title">Consideraciones sobre las contraseñas de las claves SSH</h3>
+<h3 class="callout-title">Consideraciones sobre las contraseñas de las
+claves SSH</h3>
 <div class="callout-content">
 <p>Cuando se le solicite, introduzca una contraseña segura que pueda
 recordar. Hay dos enfoques comunes para esto:</p>
@@ -780,6 +797,7 @@ pensada para ser vista.</li>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="usar-rsa-para-sistemas-antiguos" class="callout-inner">
 <h3 class="callout-title">Usar RSA para sistemas antiguos</h3>
 <div class="callout-content">
@@ -894,10 +912,11 @@ agente:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">[you@laptop:~]$</span> eval <span class="va">$(</span><span class="fu">ssh-agent</span><span class="va">)</span></span></code></pre>
 </div>
-<div id="callout3" class="callout">
+<div id="qué-hay-en-..." class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div class="callout-inner">
 <h3 class="callout-title">¿Qué hay en
 <code>$(...)</code>?</h3>
@@ -1082,6 +1101,7 @@ que almacena claves SSH y un registro de conexiones autorizadas.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="puede-haber-una-manera-mejor" class="callout-inner">
 <h3 class="callout-title">Puede haber una manera mejor</h3>
 <div class="callout-content">
@@ -1129,8 +1149,8 @@ pedirá la contraseña de su clave SSH.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
+<span class="callout-header">Puntos Clave</span>
 <div class="callout-inner">
-<h3 class="callout-title">Puntos Clave</h3>
 <div class="callout-content">
 <ul>
 <li>Un sistema HPC es un conjunto de máquinas conectadas en red.</li>
@@ -1149,7 +1169,7 @@ nodos.</li>
 </div>
 </section></section><section id="aio-12-cluster"><p>Content from <a href="12-cluster.html">Trabajar en un sistema HPC remoto</a></p>
 <hr>
-<p>Última actualización: 2025-08-04 |
+<p>Última actualización: 2026-01-15 |
 
         <a href="https://github.com/ocaisa/probable-pancake/edit/main/episodes/12-cluster.Rmd" class="external-link">Mejora esta página <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1294,6 +1314,7 @@ actual es también parte de nuestro prompt!)</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="qué-hay-en-tu-directorio-de-inicio" class="callout-inner">
 <h3 class="callout-title">¿Qué hay en tu directorio de inicio?</h3>
 <div class="callout-content">
@@ -1366,6 +1387,7 @@ principal.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="nodos-de-transferencia-dedicados" class="callout-inner">
 <h3 class="callout-title">Nodos de transferencia dedicados</h3>
 <div class="callout-content">
@@ -1434,6 +1456,7 @@ compartido y remoto o a un clúster de servidores.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="explore-su-ordenador" class="callout-inner">
 <h3 class="callout-title">Explore su ordenador</h3>
 <div class="callout-content">
@@ -1491,6 +1514,7 @@ utilizados en un sistema Linux son:</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="explorar-el-nodo-de-acceso" class="callout-inner">
 <h3 class="callout-title">Explorar el nodo de acceso</h3>
 <div class="callout-content">
@@ -1540,8 +1564,8 @@ ficheros es cada recurso.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
+<span class="callout-header">Discusión</span>
 <div class="callout-inner">
-<h3 class="callout-title">Discusión</h3>
 <div class="callout-content">
 <p>Los sistemas de ficheros locales (ext, tmp, xfs, zfs) dependerán de
 si estás en el mismo nodo de login (o nodo de computación, más
@@ -1555,6 +1579,7 @@ cómo esté <a href="https://en.wikipedia.org/wiki/Mount_(computing)" class="ext
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="sistemas-de-archivos-compartidos" class="callout-inner">
 <h3 class="callout-title">Sistemas de archivos compartidos</h3>
 <div class="callout-content">
@@ -1567,6 +1592,7 @@ cómo esté <a href="https://en.wikipedia.org/wiki/Mount_(computing)" class="ext
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
+<span class="callout-header">Discusión</span>
 <div id="explore-a-worker-node" class="callout-inner">
 <h3 class="callout-title">Explore a Worker Node</h3>
 <div class="callout-content">
@@ -1585,8 +1611,10 @@ name, CPUs and memory available on one of the worker nodes:</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
+<span class="callout-header">Discusión</span>
 <div id="compare-su-ordenador-el-nodo-de-inicio-de-sesión-y-el-nodo-de-cálculo" class="callout-inner">
-<h3 class="callout-title">Compare su ordenador, el nodo de inicio de sesión y el nodo de cálculo</h3>
+<h3 class="callout-title">Compare su ordenador, el nodo de inicio de
+sesión y el nodo de cálculo</h3>
 <div class="callout-content">
 <p>Compara el número de procesadores y memoria de tu portátil con los
 números que ves en el nodo cabeza del cluster y en el nodo trabajador.
@@ -1601,6 +1629,7 @@ nodos?</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="diferencias-entre-nodos" class="callout-inner">
 <h3 class="callout-title">Diferencias entre nodos</h3>
 <div class="callout-content">
@@ -1618,8 +1647,8 @@ programas</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
+<span class="callout-header">Puntos Clave</span>
 <div class="callout-inner">
-<h3 class="callout-title">Puntos Clave</h3>
 <div class="callout-content">
 <ul>
 <li>“Un sistema HPC es un conjunto de máquinas conectadas en red”</li>
@@ -1637,7 +1666,7 @@ nodos”</li>
 </div>
 </section></section><section id="aio-13-scheduler"><p>Content from <a href="13-scheduler.html">Fundamentos del programador</a></p>
 <hr>
-<p>Última actualización: 2025-08-04 |
+<p>Última actualización: 2026-01-15 |
 
         <a href="https://github.com/ocaisa/probable-pancake/edit/main/episodes/13-scheduler.Rmd" class="external-link">Mejora esta página <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1745,6 +1774,7 @@ script.</li>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="creación-de-nuestro-trabajo-de-prueba" class="callout-inner">
 <h3 class="callout-title">Creación de nuestro trabajo de prueba</h3>
 <div class="callout-content">
@@ -1820,6 +1850,7 @@ nuestros trabajos pueden necesitar esperar en una cola
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
+<span class="callout-header">Discusión</span>
 <div id="dónde-está-la-salida" class="callout-inner">
 <h3 class="callout-title">¿Dónde está la salida?</h3>
 <div class="callout-content">
@@ -1930,6 +1961,7 @@ esta lección.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="envío-de-solicitudes-de-recursos" class="callout-inner">
 <h3 class="callout-title">Envío de solicitudes de recursos</h3>
 <div class="callout-content">
@@ -2068,6 +2100,7 @@ solicitud de cancelación del trabajo se ha realizado correctamente.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="cancelación-de-múltiples-trabajos" class="callout-inner">
 <h3 class="callout-title">Cancelación de múltiples trabajos</h3>
 <div class="callout-content">
@@ -2173,6 +2206,7 @@ computación en el que estamos conectados. También puedes verificarlo con
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="creación-de-gráficos-remotos" class="callout-inner">
 <h3 class="callout-title">Creación de gráficos remotos</h3>
 <div class="callout-content">
@@ -2199,8 +2233,8 @@ comando <code>srun --x11 --pty bash</code>.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
+<span class="callout-header">Puntos Clave</span>
 <div class="callout-inner">
-<h3 class="callout-title">Puntos Clave</h3>
 <div class="callout-content">
 <ul>
 <li>El planificador gestiona cómo se comparten los recursos informáticos
@@ -2215,7 +2249,7 @@ necesitará.</li>
 </div>
 </section></section><section id="aio-14-environment-variables"><p>Content from <a href="14-environment-variables.html">Variables de entorno</a></p>
 <hr>
-<p>Última actualización: 2025-08-04 |
+<p>Última actualización: 2026-01-15 |
 
         <a href="https://github.com/ocaisa/probable-pancake/edit/main/episodes/14-environment-variables.Rmd" class="external-link">Mejora esta página <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2259,6 +2293,7 @@ buscar ejecutables</li>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="procedencia-del-episodio" class="callout-inner">
 <h3 class="callout-title">Procedencia del episodio</h3>
 <div class="callout-content">
@@ -2400,8 +2435,10 @@ llamemos desde nuestra shell podemos hacer:</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="uso-de-variables-de-entorno-para-cambiar-el-comportamiento-del-programa" class="callout-inner">
-<h3 class="callout-title">Uso de variables de entorno para cambiar el comportamiento del programa</h3>
+<h3 class="callout-title">Uso de variables de entorno para cambiar el
+comportamiento del programa</h3>
 <div class="callout-content">
 <p>Establece una variable de shell <code>TIME_STYLE</code> para que
 tenga un valor de <code>iso</code> y comprueba este valor usando el
@@ -2440,6 +2477,7 @@ ejecutas</strong>.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="variables-de-entorno-de-trabajo" class="callout-inner">
 <h3 class="callout-title">Variables de entorno de trabajo</h3>
 <div class="callout-content">
@@ -2548,8 +2586,8 @@ hacer un montón de contabilidad sobre cuál es o debería ser el valor de
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
+<span class="callout-header">Puntos Clave</span>
 <div class="callout-inner">
-<h3 class="callout-title">Puntos Clave</h3>
 <div class="callout-content">
 <ul>
 <li>Las variables del intérprete de órdenes se tratan por defecto como
@@ -2566,7 +2604,7 @@ shell</li>
 </div>
 </section></section><section id="aio-15-modules"><p>Content from <a href="15-modules.html">Acceso al software a través de módulos</a></p>
 <hr>
-<p>Última actualización: 2025-08-04 |
+<p>Última actualización: 2026-01-15 |
 
         <a href="https://github.com/ocaisa/probable-pancake/edit/main/episodes/15-modules.Rmd" class="external-link">Mejora esta página <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2960,6 +2998,7 @@ any of the "keys".</code></pre>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="uso-de-módulos-de-software-en-scripts" class="callout-inner">
 <h3 class="callout-title">Uso de módulos de software en scripts</h3>
 <div class="callout-content">
@@ -2978,7 +3017,7 @@ computación).</p>
   Solución
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3010,8 +3049,8 @@ python3 --version</code></pre>
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
+<span class="callout-header">Puntos Clave</span>
 <div class="callout-inner">
-<h3 class="callout-title">Puntos Clave</h3>
 <div class="callout-content">
 <ul>
 <li>Cargar software con <code>module load softwareName</code>.</li>
@@ -3025,7 +3064,7 @@ software y los conflictos entre paquetes.</li>
 </div>
 </section></section><section id="aio-16-transferring-files"><p>Content from <a href="16-transferring-files.html">Transferencia de archivos con ordenadores remotos</a></p>
 <hr>
-<p>Última actualización: 2025-08-04 |
+<p>Última actualización: 2026-01-15 |
 
         <a href="https://github.com/ocaisa/probable-pancake/edit/main/episodes/16-transferring-files.Rmd" class="external-link">Mejora esta página <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3083,6 +3122,7 @@ actual:</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="descarga-el-tarball" class="callout-inner">
 <h3 class="callout-title">Descarga el “Tarball”</h3>
 <div class="callout-content">
@@ -3205,6 +3245,7 @@ con algunas banderas comunes:</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
+<span class="callout-header">Discusión</span>
 <div id="extraer-el-archivo" class="callout-inner">
 <h3 class="callout-title">Extraer el archivo</h3>
 <div class="callout-content">
@@ -3298,6 +3339,7 @@ del tarball, ¡duplicando el tamaño del archivo!</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="trabajando-con-windows" class="callout-inner">
 <h3 class="callout-title">Trabajando con Windows</h3>
 <div class="callout-content">
@@ -3365,8 +3407,10 @@ esta forma:</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="por-qué-no-descargar-en-hpc-carpentrys-cloud-cluster-directamente" class="callout-inner">
-<h3 class="callout-title">¿Por qué no descargar en HPC Carpentry’s Cloud Cluster directamente?</h3>
+<h3 class="callout-title">¿Por qué no descargar en HPC Carpentry’s Cloud
+Cluster directamente?</h3>
 <div class="callout-content">
 <p>La mayoría de los clusters de ordenadores están protegidos de la
 Internet abierta por un <em>firewall</em>. Para mejorar la seguridad,
@@ -3405,6 +3449,7 @@ fallar, ¡y no pasa nada!</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
+<span class="callout-header">Discusión</span>
 <div id="por-qué-no-descargar-en-hpc-carpentrys-cloud-cluster-directamente" class="callout-inner">
 <h3 class="callout-title">¿Por qué no descargar en HPC Carpentry’s Cloud
 Cluster directamente?<em> (continued)</em>
@@ -3432,6 +3477,7 @@ enraizado en el nombre de carpeta que proporcionaste.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="precaución" class="callout-inner">
 <h3 class="callout-title">Precaución</h3>
 <div class="callout-content">
@@ -3467,6 +3513,7 @@ origen es importante para otros comandos, como <code>rsync</code>.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="nota-sobre-rsync" class="callout-inner">
 <h3 class="callout-title">Nota sobre <code>rsync</code>
 </h3>
@@ -3533,6 +3580,7 @@ la página <code>man</code> si no estás seguro.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="cambiar-el-puerto-rsync" class="callout-inner">
 <h3 class="callout-title">Cambiar el puerto Rsync</h3>
 <div class="callout-content">
@@ -3609,8 +3657,8 @@ fuente a su máquina local, y luego a la máquina de destino.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
+<span class="callout-header">Puntos Clave</span>
 <div class="callout-inner">
-<h3 class="callout-title">Puntos Clave</h3>
 <div class="callout-content">
 <ul>
 <li>
@@ -3627,7 +3675,7 @@ archivos a través de una GUI.</li>
 </div>
 </section></section><section id="aio-17-parallel"><p>Content from <a href="17-parallel.html">Ejecutar un trabajo paralelo</a></p>
 <hr>
-<p>Última actualización: 2025-08-04 |
+<p>Última actualización: 2026-01-15 |
 
         <a href="https://github.com/ocaisa/probable-pancake/edit/main/episodes/17-parallel.Rmd" class="external-link">Mejora esta página <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3697,6 +3745,7 @@ Python, o <code>pip</code>, para instalarlo en tu directorio personal
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="amdahl-es-código-python" class="callout-inner">
 <h3 class="callout-title">Amdahl es código Python</h3>
 <div class="callout-content">
@@ -3720,6 +3769,7 @@ local y subirlo, tal y como hicimos para Amdahl.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
+<span class="callout-header">Discusión</span>
 <div id="recuperar-y-subir-mpi4py" class="callout-inner">
 <h3 class="callout-title">Recuperar y Subir <code>mpi4py</code>
 </h3>
@@ -3753,6 +3803,7 @@ instalado, recupere el tarball de <a href="https://github.com/mpi4py/mpi4py/tarb
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
+<span class="callout-header">Discusión</span>
 <div id="if-pip-raises-a-warning" class="callout-inner">
 <h3 class="callout-title">If <code>pip</code> Raises a Warning…</h3>
 <div class="callout-content">
@@ -3930,6 +3981,7 @@ los sistemas HPC.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="qué-es-mpi" class="callout-inner">
 <h3 class="callout-title">¿Qué es MPI?</h3>
 <div class="callout-content">
@@ -3959,6 +4011,7 @@ para el paralelismo.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="argumentos-de-ejecución-mpi" class="callout-inner">
 <h3 class="callout-title">Argumentos de ejecución MPI</h3>
 <div class="callout-content">
@@ -4042,6 +4095,7 @@ Total execution time (according to rank 0): 10.888 seconds</code></pre>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="es-4-más-rápido" class="callout-inner">
 <h3 class="callout-title">¿Es 4× más rápido?</h3>
 <div class="callout-content">
@@ -4181,6 +4235,7 @@ Total execution time (according to rank 0): 7.697 seconds</code></pre>
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
+<span class="callout-header">Discusión</span>
 <div id="salida-no-lineal" class="callout-inner">
 <h3 class="callout-title">Salida no lineal</h3>
 <div class="callout-content">
@@ -4276,8 +4331,8 @@ novice lesson</a>.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
+<span class="callout-header">Puntos Clave</span>
 <div class="callout-inner">
-<h3 class="callout-title">Puntos Clave</h3>
 <div class="callout-content">
 <ul>
 <li>La programación paralela permite a las aplicaciones aprovechar las
@@ -4291,7 +4346,7 @@ linealmente.</li>
 </div>
 </section></section><section id="aio-18-resources"><p>Content from <a href="18-resources.html">Uso eficaz de los recursos</a></p>
 <hr>
-<p>Última actualización: 2025-08-04 |
+<p>Última actualización: 2026-01-15 |
 
         <a href="https://github.com/ocaisa/probable-pancake/edit/main/episodes/18-resources.Rmd" class="external-link">Mejora esta página <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -4343,6 +4398,7 @@ necesitará un programa.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="leer-la-documentación" class="callout-inner">
 <h3 class="callout-title">Leer la documentación</h3>
 <div class="callout-content">
@@ -4418,6 +4474,7 @@ desplazarse por los campos).</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
+<span class="callout-header">Discusión</span>
 <div id="discusión" class="callout-inner">
 <h3 class="callout-title">Discusión</h3>
 <div class="callout-content">
@@ -4448,6 +4505,7 @@ despache antes.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="reducir-la-estimación-de-tiempo" class="callout-inner">
 <h3 class="callout-title">Reducir la estimación de tiempo</h3>
 <div class="callout-content">
@@ -4464,7 +4522,7 @@ estimación del tiempo. ¿Qué tan cerca puedes estar?</p>
   Solución
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>La siguiente línea indica a Slurm que nuestro trabajo debe terminar
 en 2 minutos:</p>
@@ -4481,8 +4539,8 @@ en 2 minutos:</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
+<span class="callout-header">Puntos Clave</span>
 <div class="callout-inner">
-<h3 class="callout-title">Puntos Clave</h3>
 <div class="callout-content">
 <ul>
 <li>La precisión de los guiones de trabajo ayuda al sistema de colas a
@@ -4493,7 +4551,7 @@ asignar eficazmente los recursos compartidos.</li>
 </div>
 </section></section><section id="aio-19-responsibility"><p>Content from <a href="19-responsibility.html">Uso responsable de los recursos compartidos</a></p>
 <hr>
-<p>Última actualización: 2025-08-04 |
+<p>Última actualización: 2026-01-15 |
 
         <a href="https://github.com/ocaisa/probable-pancake/edit/main/episodes/19-responsibility.Rmd" class="external-link">Mejora esta página <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -4569,8 +4627,10 @@ problemas.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="los-nodos-de-inicio-de-sesión-son-un-recurso-compartido" class="callout-inner">
-<h3 class="callout-title">Los nodos de inicio de sesión son un recurso compartido</h3>
+<h3 class="callout-title">Los nodos de inicio de sesión son un recurso
+compartido</h3>
 <div class="callout-content">
 <p>Recuerda que el nodo de inicio de sesión se comparte con todos los
 demás usuarios y tus acciones podrían causar problemas a otras personas.
@@ -4595,6 +4655,7 @@ con el <em>PID</em> para terminar el proceso.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="etiqueta-del-nodo-de-inicio-de-sesión" class="callout-inner">
 <h3 class="callout-title">Etiqueta del nodo de inicio de sesión</h3>
 <div class="callout-content">
@@ -4617,7 +4678,7 @@ nodo login?</p>
   Solución
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Construir software, crear directorios y desempaquetar software son
 tareas &gt; comunes y aceptables para el nodo de inicio de sesión: las
@@ -4663,8 +4724,10 @@ problema.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="probar-scripts-de-envío-de-trabajos-que-utilizan-grandes-cantidades-de-recursos" class="callout-inner">
-<h3 class="callout-title">Probar scripts de envío de trabajos que utilizan grandes cantidades de recursos</h3>
+<h3 class="callout-title">Probar scripts de envío de trabajos que
+utilizan grandes cantidades de recursos</h3>
 <div class="callout-content">
 <p>Antes de enviar una gran cantidad de trabajos, envíe primero uno como
 prueba para asegurarse de que todo funciona como se espera.</p>
@@ -4715,6 +4778,7 @@ a utilizar.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="tus-datos-son-tu-responsabilidad" class="callout-inner">
 <h3 class="callout-title">Tus datos son tu responsabilidad</h3>
 <div class="callout-content">
@@ -4811,8 +4875,10 @@ que indican una latencia mayor.</a></p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="considere-la-mejor-forma-de-transferir-datos" class="callout-inner">
-<h3 class="callout-title">Considere la mejor forma de transferir datos</h3>
+<h3 class="callout-title">Considere la mejor forma de transferir
+datos</h3>
 <div class="callout-content">
 <p>Si vas a transferir grandes cantidades de datos, tendrás que pensar
 en qué puede afectar al rendimiento de la transferencia. Siempre es útil
@@ -4845,7 +4911,7 @@ Carpentry’s Cloud Cluster?</p>
   Solución
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>
@@ -4878,8 +4944,8 @@ datos), es la mejor combinación de alto rendimiento y baja latencia
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
+<span class="callout-header">Puntos Clave</span>
 <div class="callout-inner">
-<h3 class="callout-title">Puntos Clave</h3>
 <div class="callout-content">
 <ul>
 <li>Ten cuidado con el uso del nodo login.</li>
@@ -4909,15 +4975,17 @@ antes de transferirlos.</li>
 	
         | <a href="https://github.com/ocaisa/probable-pancake/blob/main/CONTRIBUTING.md" class="external-link">Contribuir</a>
         | <a href="https://github.com/ocaisa/probable-pancake/" class="external-link">Fuente</a></p>
-				<p><a href="https://github.com/ocaisa/probable-pancake/blob/main/CITATION" class="external-link">Cita</a> | <a href="mailto:team@carpentries.org">Contacto</a> | <a href="https://carpentries.org/about/" class="external-link">Acerca de</a></p>
-			</div>
-			<div class="col-md-6">
+        <p>
+        <a href="https://github.com/ocaisa/probable-pancake/blob/main/" class="external-link">Cita</a>
+        | <a href="mailto:team@carpentries.org">Contacto</a> | <a href="https://carpentries.org/about/" class="external-link">Acerca de</a></p>
+		</div>
+		<div class="col-md-6">
 
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Plantilla compartida bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> por <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Construido con <a href="https://github.com/carpentries/sandpaper/tree/0.16.12" class="external-link">sandpaper (0.16.12)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a> y <a href="https://github.com/carpentries/varnish/tree/1.0.6" class="external-link">varnish (1.0.6)</a></p>
-			</div>
+        <p>Construido con <a href="https://github.com/carpentries/sandpaper/tree/0.17.3" class="external-link">sandpaper (0.17.3)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a> y <a href="https://github.com/carpentries/varnish/tree/1.0.9" class="external-link">varnish (1.0.9)</a></p>
+		</div>
 		</footer>
 </div> <!-- / div.container -->
 	<div id="to-top">
@@ -4939,8 +5007,8 @@ antes de transferirlos.</li>
   "url": "https://ocaisa.github.io/probable_pancake/aio.html",
   "identifier": "https://ocaisa.github.io/probable_pancake/aio.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2025-08-04",
-  "datePublished": "2025-08-04"
+  "dateModified": "2026-01-15",
+  "datePublished": "2026-01-15"
 }
 
   </script><script>

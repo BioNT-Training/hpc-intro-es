@@ -57,6 +57,16 @@
           </ul></li>
       </div>
 
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+          <b>Español</b>  <i data-feather="chevron-down"></i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"><li><button class="dropdown-item" type="button"><a href="https://biont-training.github.io/hpc-intro-de" class="external-link">Deutsch</a></button></li>
+          <li><button class="dropdown-item" type="button"><a href="https://biont-training.github.io/hpc-intro-en" class="external-link">English</a></button></li>
+          <li><button class="dropdown-item" type="button"><a href="https://biont-training.github.io/hpc-intro-it" class="external-link">Italiano</a></button></li>
+        </ul></div>
+
       <div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Vista de estudiante <i data-feather="chevron-down"></i>
@@ -366,7 +376,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Transferencia de archivos con ordenadores remotos</h1>
-        <p>Última actualización: 2025-08-04 |
+        <p>Última actualización: 2026-01-15 |
 
         <a href="https://github.com/ocaisa/probable-pancake/edit/main/episodes/16-transferring-files.Rmd" class="external-link">Mejora esta página <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -422,6 +432,7 @@ actual:</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="descarga-el-tarball" class="callout-inner">
 <h3 class="callout-title">Descarga el “Tarball”</h3>
 <div class="callout-content">
@@ -540,6 +551,7 @@ con algunas banderas comunes:</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
+<span class="callout-header">Discusión</span>
 <div id="extraer-el-archivo" class="callout-inner">
 <h3 class="callout-title">Extraer el archivo</h3>
 <div class="callout-content">
@@ -633,6 +645,7 @@ del tarball, ¡duplicando el tamaño del archivo!</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="trabajando-con-windows" class="callout-inner">
 <h3 class="callout-title">Trabajando con Windows</h3>
 <div class="callout-content">
@@ -698,8 +711,10 @@ esta forma:</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="por-qué-no-descargar-en-hpc-carpentrys-cloud-cluster-directamente" class="callout-inner">
-<h3 class="callout-title">¿Por qué no descargar en HPC Carpentry’s Cloud Cluster directamente?</h3>
+<h3 class="callout-title">¿Por qué no descargar en HPC Carpentry’s Cloud
+Cluster directamente?</h3>
 <div class="callout-content">
 <p>La mayoría de los clusters de ordenadores están protegidos de la
 Internet abierta por un <em>firewall</em>. Para mejorar la seguridad,
@@ -738,6 +753,7 @@ fallar, ¡y no pasa nada!</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
+<span class="callout-header">Discusión</span>
 <div id="por-qué-no-descargar-en-hpc-carpentrys-cloud-cluster-directamente" class="callout-inner">
 <h3 class="callout-title">¿Por qué no descargar en HPC Carpentry’s Cloud
 Cluster directamente?<em> (continued)</em>
@@ -763,6 +779,7 @@ enraizado en el nombre de carpeta que proporcionaste.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="precaución" class="callout-inner">
 <h3 class="callout-title">Precaución</h3>
 <div class="callout-content">
@@ -798,6 +815,7 @@ origen es importante para otros comandos, como <code>rsync</code>.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
+<span class="callout-header">Aviso</span>
 <div id="nota-sobre-rsync" class="callout-inner">
 <h3 class="callout-title">Nota sobre <code>rsync</code>
 </h3>
@@ -862,6 +880,7 @@ la página <code>man</code> si no estás seguro.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
+<span class="callout-header">Desafío</span>
 <div id="cambiar-el-puerto-rsync" class="callout-inner">
 <h3 class="callout-title">Cambiar el puerto Rsync</h3>
 <div class="callout-content">
@@ -934,8 +953,8 @@ fuente a su máquina local, y luego a la máquina de destino.</p>
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
+<span class="callout-header">Puntos Clave</span>
 <div class="callout-inner">
-<h3 class="callout-title">Puntos Clave</h3>
 <div class="callout-content">
 <ul><li>
 <code>wget</code> y <code>curl -O</code> descarga un archivo de
@@ -977,15 +996,17 @@ archivos a través de una GUI.</li>
 	
         | <a href="https://github.com/ocaisa/probable-pancake/blob/main/CONTRIBUTING.md" class="external-link">Contribuir</a>
         | <a href="https://github.com/ocaisa/probable-pancake/" class="external-link">Fuente</a></p>
-				<p><a href="https://github.com/ocaisa/probable-pancake/blob/main/CITATION" class="external-link">Cita</a> | <a href="mailto:team@carpentries.org">Contacto</a> | <a href="https://carpentries.org/about/" class="external-link">Acerca de</a></p>
-			</div>
-			<div class="col-md-6">
+        <p>
+        <a href="https://github.com/ocaisa/probable-pancake/blob/main/" class="external-link">Cita</a>
+        | <a href="mailto:team@carpentries.org">Contacto</a> | <a href="https://carpentries.org/about/" class="external-link">Acerca de</a></p>
+		</div>
+		<div class="col-md-6">
 
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Plantilla compartida bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> por <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Construido con <a href="https://github.com/carpentries/sandpaper/tree/0.16.12" class="external-link">sandpaper (0.16.12)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a> y <a href="https://github.com/carpentries/varnish/tree/1.0.6" class="external-link">varnish (1.0.6)</a></p>
-			</div>
+        <p>Construido con <a href="https://github.com/carpentries/sandpaper/tree/0.17.3" class="external-link">sandpaper (0.17.3)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a> y <a href="https://github.com/carpentries/varnish/tree/1.0.9" class="external-link">varnish (1.0.9)</a></p>
+		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
 		<a href="#top">
@@ -1006,8 +1027,8 @@ archivos a través de una GUI.</li>
   "url": "https://ocaisa.github.io/probable_pancake/16-transferring-files.html",
   "identifier": "https://ocaisa.github.io/probable_pancake/16-transferring-files.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2025-08-04",
-  "datePublished": "2025-08-04"
+  "dateModified": "2026-01-15",
+  "datePublished": "2026-01-15"
 }
 
   </script><script>
