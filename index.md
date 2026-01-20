@@ -25,7 +25,7 @@ Al finalizar este taller, los alumnos sabrán cómo:
 
 ## Primeros pasos
 
-Para empezar, por favor sigue las "[Instrucciones de configuración](../learners/setup.md) para asegurarte de que tienes un terminal y una aplicación SSH.
+Para empezar, por favor sigue las [Instrucciones de configuración](learners/setup.md) para asegurarte de que tienes un terminal y una aplicación SSH.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
