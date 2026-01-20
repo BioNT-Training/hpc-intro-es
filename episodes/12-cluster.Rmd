@@ -41,7 +41,7 @@ El primer paso para utilizar un clúster es establecer una conexión entre nuest
 
 Si alguna vez has abierto el símbolo del sistema de Windows o el terminal de macOS, habrás visto una CLI. Si ya has tomado los cursos de Las Carpinterías sobre la Shell UNIX o el Control de Versiones, has usado la CLI en tu máquina local algo extensamente. El único salto a dar aquí es abrir un CLI en una máquina *remota*, tomando algunas precauciones para que otras personas en la red no puedan ver (o cambiar) los comandos que estás ejecutando o los resultados que la máquina remota envía de vuelta. Usaremos el protocolo Secure SHell (o SSH) para abrir una conexión de red encriptada entre dos máquinas, permitiéndote enviar y recibir texto y datos sin tener que preocuparte de miradas indiscretas.
 
-![Conectarse al clúster](fig/connect-to-remote.svg){alt-text="Conectarse al clúster"}
+![Conectarse al clúster](fig/connect-to-remote.svg){alt="Conectarse al clúster"}
 
 Asegúrese de que tiene un cliente SSH instalado en su portátil. Consulte la sección [setup](../index.md) para más detalles. Los clientes SSH suelen ser herramientas de línea de comandos, donde se proporciona la dirección de la máquina remota como único argumento requerido. Si tu nombre de usuario en el sistema remoto difiere del que usas localmente, debes proporcionarlo también. Si tu cliente SSH tiene un front-end gráfico, como PuTTY o MobaXterm, establecerás estos argumentos antes de hacer clic en "conectar" Desde el terminal, escribirás algo como `ssh userName@hostname`, donde el símbolo "@" se utiliza para separar las dos partes de un único argumento.
 
