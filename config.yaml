@@ -93,7 +93,9 @@ profiles:
 
 carpentry_description: Lesson Description
 url: 'https://ocaisa.github.io/probable_pancake'
-analytics: carpentries
+analytics: |
+  <script defer data-domain="biont-training.github.io" src="https://plausible.galaxyproject.eu/js/script.js"></script>
+
 lang: es
 
 languages:
