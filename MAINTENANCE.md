@@ -40,7 +40,7 @@ of the HPC Carpentry community.
 
 The main Carpentries Slack channel is reachable at
 [swcarpentry.slack.com][swc-slack]. To become a member, you can
-trigger in invitation from [this link][slack-invite].
+trigger in invitation from [this slack invite page][slack-invite].
 
 You can go directly to the HPC Carpentry sub-channel at
 [#hpc-carpentry][hpc-slack]. These are the things to bookmark &mdash;

@@ -89,7 +89,7 @@ Genera un nuevo par de claves pública-privada usando el siguiente comando, que 
 `r config$local$prompt` ssh-keygen -a 100 -f ~/.ssh/id_ed25519 -t ed25519
 ```
 
-Cuando se le solicite, introduzca una contraseña segura teniendo en cuenta las [consideraciones anteriores](#consideraciones-sobre-las-contrasenas-de-las-claves-ssh). Ten en cuenta que el terminal no parecerá cambiar mientras escribes la contraseña: esto es deliberado, por tu seguridad. Se le pedirá que la escriba de nuevo, así que no se preocupe demasiado por los errores tipográficos.
+Cuando se le solicite, introduzca una contraseña segura teniendo en cuenta las [consideraciones anteriores](#consideraciones-sobre-las-contraseñas-de-las-claves-ssh). Ten en cuenta que el terminal no parecerá cambiar mientras escribes la contraseña: esto es deliberado, por tu seguridad. Se le pedirá que la escriba de nuevo, así que no se preocupe demasiado por los errores tipográficos.
 
 Echa un vistazo en `~/.ssh` (utiliza `ls ~/.ssh`). Debería ver dos archivos nuevos:
 
@@ -115,7 +115,9 @@ Si `~/.ssh/id_rsa` ya existe, tendrás que especificar elegir un nombre diferent
 `r config$local$prompt` ssh-keygen -a 100 -b 4096 -f ~/.ssh/id_rsa -o -t rsa
 ```
 
-Cuando se le solicite, introduzca una contraseña segura teniendo en cuenta las [consideraciones anteriores](#considerations-for-ssh-key-passwords).
+Cuando se le solicite, introduzca una contraseña segura teniendo en cuenta las [consideraciones anteriores](#consideraciones-sobre-las-contraseñas-de-las-claves-ssh).
+
+
 
 Echa un vistazo en `~/.ssh` (utiliza `ls ~/.ssh`). Debería ver dos archivos nuevos:
 
@@ -132,7 +134,7 @@ Si utiliza PuTTY en Windows, descargue y utilice `puttygen` para generar el par 
 - Seleccione `255` como tamaño o fuerza de la clave.
 - Haz clic en el botón "Generar".
 - No es necesario introducir un comentario.
-- Cuando se le solicite, introduzca una contraseña segura teniendo en cuenta las [consideraciones anteriores](#consideraciones-sobre-las-contrasenas-de-las-claves-ssh).
+- Cuando se le solicite, introduzca una contraseña segura teniendo en cuenta las [consideraciones anteriores](#consideraciones-sobre-las-contraseñas-de-las-claves-ssh).
 - Guarda las claves en una carpeta que ningún otro usuario del sistema pueda leer.
 
 Echa un vistazo a la carpeta que has especificado. Debería ver dos archivos nuevos:
