@@ -33,13 +33,13 @@ life_cycle: 'alpha'
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/ocaisa/probable-pancake'
+source: 'https://github.com/BioNT-Training/hpc-intro-es'
 
 # Default branch of your lesson
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'team@carpentries.org'
+contact: 'contact@biont-training.eu'
 
 # Navigation ------------------------------------------------
 #
